@@ -98,12 +98,12 @@ Did not also define the isA relationships that these classes participate in whil
   * `E92 Spacetime Volume. P133 is spatiotemporally separated from: E92 Spacetime Volume`
 
 
-* Added the following 4 RDF property definitions dues to C1 and C2
+* Added the following 4 RDF property definitions due to C1 and C2
 
-  * `E52 Time-Span. P81a end of the begin: xsd:datetime (subPropertyOf E52 Time-Span. P81 ongoing throughout: E61 Time Primitive)`
-  * `E52 Time-Span. P81b begin of the end: xsd:datetime (subPropertyOf E52 Time-Span. P81 ongoing throughout: E61 Time Primitive)`
-  * `E52 Time-Span. P82a begin of the begin: xsd:datetime (subPropertyOf E52 Time-Span. P82 at some time within: E61 Time Primitive)`
-  * `E52 Time-Span. P82b end of the end: xsd:datetime (subPropertyOf E52 Time-Span. P82 at some time within: E61 Time Primitive)`
+  * `E52 Time-Span. P81a end of the begin: xsd:datetime` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
+  * `E52 Time-Span. P81b begin of the end: xsd:datetime` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
+  * `E52 Time-Span. P82a begin of the begin: xsd:datetime` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)
+  * `E52 Time-Span. P82b end of the end: xsd:datetime` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)
 
 
 
