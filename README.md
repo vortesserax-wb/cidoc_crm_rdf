@@ -39,7 +39,8 @@ In this DRAFT version we followed the following policies regarding CIDOC Classes
 The decisions in policy A affect the implementation of Cidoc Properties in RDF. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason. 
 In this DRAFT version we followed the following policies regarding CIDOC Properties implementation in RDF:
 
-> B1. CIDOC Property forward direction is **not** defined when domain is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property backwards direction is not defined if range is interpreted as rdfs:Literal (A.1) 
+> B1. CIDOC Property forward direction is **not** defined when domain is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property backwards direction is not defined if range is interpreted as rdfs:Literal (A.1). In case forward direction of `Pxyz` is not defined but the backwards direction `Pxyzi` is defined then scope note of the forward direction is used as the scope note of `Pxyzi` and prefixed with `Scope note for 'Pxyz':`
+
 
 > B2. CIDOC Property backwards direction **is defined** using the forward property name and the `i` identifier suffix if a) no inverse name has been specified. Previous exceptions followed in [Rdf v6.2.1](http://www.cidoc-crm.org/sites/default/files/cidoc_crm_v6.2.1-2018April.rdfs) depending on whether property is symmetric or not have been removed.
 
@@ -75,6 +76,7 @@ Did not also define the isA relationships that these classes participate in whil
   * `E95 Spacetime Primitive. P169 defines spacetime volume: E92 Spacetime Volume`
   * `E61 Time Primitive. P170 defines time: E52 Time-Span`
 
+**Note:** scope notes of P169 and P170 that cannot be defined are used as scope notes of P169i and P170i with the prefix defined in B1.
   
 * Did not define inverse/backwards Properties for 11 Cidoc Properties due to B1 (literal domain/range)
 
