@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xml:lang="en" xml:base="http://www.cidoc-crm.org/cidoc-crm/">  
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xml:lang="en" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
   <!--
 CIDOC CRM v7.1.1 (draft) encoded in RDFS
 
@@ -9,7 +9,7 @@ Note that this is NOT a definition of the CIDOC CRM, but an encoding
 derived from the authoritative release of the CIDOC CRM v7.1.1 April 2021 on 
 http://cidoc-crm.org/version/version-7.1.1
 
-Created by FORTH-ICS  Friday June 11, 2021
+Created by FORTH-ICS Friday June 18, 2021
 
 
 Encoding Rules:
@@ -21,8 +21,8 @@ Encoding Rules:
    For instance "P2 has type (is type of)" is represented as:
    "P2_has_type" for the domain to range direction and "P2i_is_type_of" for the range to domain direction.
 
-3. The primitive values "E60 Number", "E61 Time Primitive", "E62 String" and "E94 Space Primitive" referred in
-   the Model for formal completeness are interpreted as rdf: literal.
+3. The primitive values "E60 Number", "E61 Time Primitive", "E62 String", "E94 Space Primitive" and 
+   "E95 Spacetime Primitive" referred in the Model for formal completeness are interpreted as rdfs:literal.
 
 4. RDF does not support properties of properties, therefore, users may create their own
    subProperties for CRM properties that have a type property such as "P3 has note":
@@ -33,21 +33,21 @@ Encoding Rules:
       <rdfs:subPropertyOf rdf:resource="P3_has_note"/>
    </rdf:Property>
 
-5. Scope notes are represented as <rdf:comment> elements.
+5. Scope notes are represented as <rdfs:comment> elements.
 
 6. In addition this encoding contains labels in languages different from English, 
-which are taken from translations of previous versions of the CIDOC CRM.    
+   which are taken from translations of previous versions of the CIDOC CRM.    
 
 7. Any other differences in labels, scope notes  and semantic relationships of this encoding 
-to the authoritative definition of the CIDOC CRM v.7.1.1 (June 2021) are not intended transfer errors. 
-FORTH appreciates your feed-back on such errors.
+   to the authoritative definition of the CIDOC CRM v.7.1.1 (June 2021) are not intended transfer errors. 
+   FORTH appreciates your feed-back on such errors.
 
 8. CRM time extension 1.0 Encoded in RDFS
-Since the Time Primitive of the CRM can not directly be implemented in RDF Triple Stores, we define in this extension
-of 4 properties replacing P81 and P82 adequately using xsd:dateTime. 
-Property P81 is dedicated for modeling the Time-Span's maximum known temporal extent i.e. ongoing_throughout. 
-Property P82 is for modeling the minimum outer bounds of events i.e. at_some_time_within. 
-P81 has its time interval redefined by P81a and P81b. Similarly, we redefine P82 by P82a and P82b.
+   Since the Time Primitive of the CRM can not directly be implemented in RDF Triple Stores, we define in this extension
+   of 4 properties replacing P81 and P82 adequately using xsd:dateTime. 
+   Property P81 is dedicated for modeling the Time-Span's maximum known temporal extent i.e. ongoing_throughout. 
+   Property P82 is for modeling the minimum outer bounds of events i.e. at_some_time_within. 
+   P81 has its time interval redefined by P81a and P81b. Similarly, we redefine P82 by P82a and P82b.
 
 -->
   <rdfs:Class rdf:about="E1_CRM_Entity">
@@ -669,14 +669,6 @@ This type is used categorically in the model without reference to instances of i
 Système International (SI) units or internationally recognized non-SI terms should be used whenever possible, such as those defined by ISO80000:2009. Archaic Measurement Units used in historical records should be preserved.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="E55_Type" />
   </rdfs:Class>
-  <rdfs:Class rdf:about="E61_Time_Primitive">
-    <rdfs:label xml:lang="en">Time Primitive</rdfs:label>
-    <rdfs:comment>This class comprises instances of E59 Primitive Value for time that should be implemented with appropriate validation, precision and references to temporal coordinate systems to express time in some context relevant to cultural and scientific documentation.
-Instantiating different instances of E61 Time Primitive relative to the same instance of E52 Time Span allows for the expression of multiple opinions/approximations of the same phenomenon. When representing different opinions/approximations of the E52 Time Span of some E2 Temporal Entity, multiple instances of E61 Time Primitive should be instantiated relative to one E52 Time Span. Only one E52 Time Span should be instantiated since there is only one real phenomenal time extent of any given temporal entity.
-The instances of E61 Time Primitive are not considered as elements of the universe of discourse that the CIDOC CRM aims at defining and analysing. Rather, they play the role of a symbolic interface between the scope of this model and the world of mathematical and computational manipulations and the symbolic objects they define and handle.
-Therefore, they must not be represented in an implementation by a universal identifier associated with a content model of different identity. In a concrete application, it is recommended that the primitive value system from a chosen implementation platform and/or data definition language be used to substitute for this class.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="E41_Appellation" />
-  </rdfs:Class>
   <rdfs:Class rdf:about="E63_Beginning_of_Existence">
     <rdfs:label xml:lang="en">Beginning of Existence</rdfs:label>
     <rdfs:label xml:lang="de">Daseinsbeginn</rdfs:label>
@@ -944,23 +936,6 @@ In some cases, the content of an instance of E90 Symbolic Object may completely 
 The temporal extent of an instance of E93 Presence typically is predetermined by the researcher so as to focus the investigation particularly on finding the spatial extent of the phenomenon by testing for its characteristic features. There are at least two basic directions such investigations might take. The investigation may wish to determine where something was during some time or it may wish to reconstruct the total passage of a phenomenon’s spacetime volume through an examination of discrete presences. Observation and measurement of features indicating the presence or absence of a phenomenon in some space allows for the progressive approximation of spatial extents through argumentation typically based on inclusion, exclusion and various overlaps.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="E92_Spacetime_Volume" />
   </rdfs:Class>
-  <rdfs:Class rdf:about="E94_Space_Primitive">
-    <rdfs:label xml:lang="en">Space Primitive</rdfs:label>
-    <rdfs:comment>This class comprises instances of E59 Primitive Value for space that should be implemented with appropriate validation, precision and references to spatial coordinate systems to express geometries on or relative to Earth, or on any other stable constellations of matter, relevant to cultural and scientific documentation.
-An instance of E94 Space Primitive defines an instance of E53 Place in the sense of a declarative place as elaborated in CRMgeo (Doerr &amp;amp; Hiebel 2013), which means that the identity of the place is derived from its geometric definition. Such a declarative place may allow for the approximation of instances of E53 Place defined by the actual extent of some phenomenon, such as a settlement or a riverbed, or other forms of identification rather than by an instance of E94 Space Primitive. Note that using an instance of E94 Space Primitive for approximating the actual extent of some place always defines a (declarative) instance of E53 Place in its own right. 
-Definitions of instances of E53 Place using different spatial reference systems are always definitions of different instances of E53 Place.
-Instances of E94 Space Primitive provide the ability to link CIDOC CRM encoded data to the kinds of geometries used in maps or Geoinformation systems. They may be used for visualization of the instances of E53 Place they define, in their geographic context and for computing topological relations between places based on these geometries. E94 Space Primitive is not further elaborated upon within this model. It is considered good practice to maintain compatibility with OGC standards.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="E41_Appellation" />
-  </rdfs:Class>
-  <rdfs:Class rdf:about="E95_Spacetime_Primitive">
-    <rdfs:label xml:lang="en">Spacetime Primitive</rdfs:label>
-    <rdfs:comment>This class comprises instances of E59 Primitive Value for spacetime volumes that should be implemented with appropriate validation, precision and reference systems to express geometries being limited and varying over time on or relative to Earth, or any other stable constellations of matter, relevant to cultural and scientific documentation. An instance of E95 Spacetime Primitive may consist of one expression including temporal and spatial information such as in GML or a different form of expressing spacetime in an integrated way such as a formula containing all 4 dimensions.
-An instance of E95 Spacetime Primitive defines an instance of E92 Spacetime Volume in the sense of a declarative spacetime volume as defined in CRMgeo (Doerr &amp;amp; Hiebel 2013), which means that the identity of the instance of E92 Spacetime Volume is derived from its geometric and temporal definition. This declarative spacetime volume allows for the application of all E92 Spacetime Volume properties to relate phenomenal spacetime volumes of periods and physical things to propositions about their spatial and temporal extents.
-Instances of E92 Spacetime Volume defined by P169 defines spacetime volume (spacetime volume is defined by) that use different spatiotemporal referring systems are always regarded as different instances of the E92 Spacetime Volume.
-It is possible for a spacetime volume to be defined by phenomena causal to it, such as an expanding and declining realm, a settlement structure or a battle, or other forms of identification rather than by an instance of E95 Spacetime Primitive. Any spatiotemporal approximation of such a phenomenon by an instance of E95 Spacetime Primitive constitutes an instance of E92 Spacetime Volume in its own right.
-E95 Spacetime Primitive is not further elaborated upon within this model. Compatibility with OGC standards is recommended.</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="E41_Appellation" />
-  </rdfs:Class>
   <rdfs:Class rdf:about="E96_Purchase">
     <rdfs:label xml:lang="en">Purchase</rdfs:label>
     <rdfs:comment>This class comprises transfers of legal ownership from one or more instances of E39 Actor to one or more different instances of E39 Actor, where the transferring party is completely compensated by the payment of a monetary amount. In more detail, a purchase agreement establishes a fixed monetary obligation at its initialization on the receiving party, to the giving party. An instance of E96 Purchase begins with the contract or equivalent agreement and ends with the fulfilment of all contractual obligations. In the case that the activity is abandoned before both parties have fulfilled these obligations, the activity is not regarded as an instance of E96 Purchase.
@@ -1197,7 +1172,7 @@ This property is transitive and reflexive.</rdfs:comment>
     <rdfs:label xml:lang="zh">时间上涵盖</rdfs:label>
     <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
     <rdfs:range rdf:resource="E92_Spacetime_Volume" />
-    <rdfs:subPropertyOf rdf:resource="P132_spatiotemporally_overlaps_with" />
+    <rdfs:subPropertyOf rdf:resource="P132i_spatiotemporally_overlaps_with" />
   </rdf:Property>
   <rdf:Property rdf:about="P11_had_participant">
     <rdfs:label xml:lang="en">had participant</rdfs:label>
@@ -2678,7 +2653,7 @@ The residence may be either the place where the actor resides, or a legally regi
     <rdfs:label xml:lang="zh">时段的数值至少涵盖</rdfs:label>
     <rdfs:comment>This property associates an instance of E52 Time-Span with an instance of E61 Time Primitive specifying a minimum period of time covered by it. Since Time-Spans may not have precisely known temporal extents, the CIDOC CRM supports statements about the minimum and maximum temporal extents of Time-Spans. This property allows a Time-Span’s minimum temporal extent (i.e., its inner boundary) to be assigned an E61 Time Primitive value. Time Primitives are treated by the CIDOC CRM as application or system specific date intervals, and are not further analysed. If different sources of evidence justify different minimum extents without contradicting each other, the smallest interval including all these extents will be the best estimate. This should be taken into account for information integration.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
-    <rdfs:range rdf:resource="E61_Time_Primitive" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
   </rdf:Property>
   <rdf:Property rdf:about="P82_at_some_time_within">
     <rdfs:label xml:lang="en">at some time within</rdfs:label>
@@ -2690,7 +2665,7 @@ The residence may be either the place where the actor resides, or a legally regi
     <rdfs:label xml:lang="zh">时段的数值不会超越</rdfs:label>
     <rdfs:comment>This property describes the maximum period of time within which an E52 Time-Span falls. Since Time-Spans may not have precisely known temporal extents, the CIDOC CRM supports statements about the minimum and maximum temporal extents of Time-Spans. This property allows a Time-Span’s maximum temporal extent (i.e., its outer boundary) to be assigned an E61 Time Primitive value. Time Primitives are treated by the CIDOC CRM as application or system specific date intervals, and are not further analysed. If different sources of evidence justify different maximum extents without contradicting each other, the resulting intersection of all these extents will be the best estimate. This should be taken into account for information integration.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
-    <rdfs:range rdf:resource="E61_Time_Primitive" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
   </rdf:Property>
   <rdf:Property rdf:about="P86_falls_within">
     <rdfs:label xml:lang="en">falls within</rdfs:label>
@@ -3356,6 +3331,10 @@ This property is symmetric.</rdfs:comment>
     <rdfs:domain rdf:resource="E53_Place" />
     <rdfs:range rdf:resource="E53_Place" />
   </rdf:Property>
+  <rdf:Property rdf:about="P121i_overlaps_with">
+    <rdfs:domain rdf:resource="E53_Place" />
+    <rdfs:range rdf:resource="E53_Place" />
+  </rdf:Property>
   <rdf:Property rdf:about="P122_borders_with">
     <rdfs:label xml:lang="en">borders with</rdfs:label>
     <rdfs:label xml:lang="de">grenzt an</rdfs:label>
@@ -3367,6 +3346,10 @@ This property is symmetric.</rdfs:comment>
     <rdfs:comment>This symmetric property associates an instance of E53 Place with another instance of E53 Place which shares a part of its border. 
 This property is purely spatial. It does not imply that the phenomena that define, by their extent, places related by P122 borders with have ever shared a respective border at the same time or even coexisted. In particular, this may be the case when the respective common border is formed by a natural feature. 
 This property is not transitive. This property is symmetric.</rdfs:comment>
+    <rdfs:domain rdf:resource="E53_Place" />
+    <rdfs:range rdf:resource="E53_Place" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P122i_borders_with">
     <rdfs:domain rdf:resource="E53_Place" />
     <rdfs:range rdf:resource="E53_Place" />
   </rdf:Property>
@@ -3578,11 +3561,19 @@ This property is symmetric</rdfs:comment>
     <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
     <rdfs:range rdf:resource="E92_Spacetime_Volume" />
   </rdf:Property>
+  <rdf:Property rdf:about="P132i_spatiotemporally_overlaps_with">
+    <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
+    <rdfs:range rdf:resource="E92_Spacetime_Volume" />
+  </rdf:Property>
   <rdf:Property rdf:about="P133_is_spatiotemporally_separated_from">
     <rdfs:label xml:lang="en">is spatiotemporally separated from</rdfs:label>
     <rdfs:comment>This symmetric property associates two instances of E92 Spacetime Volume that have no extents in common. If only the fuzzy boundaries of the instances of E92 Spacetime Volume overlap, this property cannot be determined from observation alone and therefore should not be applied. However, there may be other forms of justification that the two instances of E92 Spacetime Volume must not have any of their extents in common regardless of where and when precisely. 
 If this property holds for two instances of E92 Spacetime Volume then it cannot be the case that P132 spatiotemporally overlaps with also holds for the same two instances. Furthermore, there are cases where neither P132 spatiotemporally overlaps with nor P133 is spatiotemporally separated from holds between two instances of E92 Spacetime Volume. This would occur where only an overlap of the fuzzy boundaries of the two instances of E92 Spacetime Volume occurs and no other evidence is available.
 This property is not transitive. This property is symmetric.</rdfs:comment>
+    <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
+    <rdfs:range rdf:resource="E92_Spacetime_Volume" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P133i_is_spatiotemporally_separated_from">
     <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
     <rdfs:range rdf:resource="E92_Spacetime_Volume" />
   </rdf:Property>
@@ -3729,6 +3720,10 @@ This property is also used for the relationship between an original and a digiti
     <rdfs:comment>This property associates an instance of E41 Appellation with another instance of E41 Appellation that constitutes a derivative or variant of the former and that may also be used for identifying items identified by the former, in suitable contexts, independent from the particular item to be identified. This property should not be confused with additional variants of names used characteristically for a single, particular item, such as individual nicknames. It is an asymmetric relationship, where the range expresses the derivative, if such a direction can be established. Otherwise, the relationship is symmetric. The relationship is not transitive.
 Multiple names assigned to an object, which do not apply to all things identified with the specific instance of E41 Appellation, should be modelled as repeated values of P1 is identified by (identifies) of this object.
 P139.1 has type allows the type of derivation to be refined, for instance “transliteration from Latin 1 to ASCII”.</rdfs:comment>
+    <rdfs:domain rdf:resource="E41_Appellation" />
+    <rdfs:range rdf:resource="E41_Appellation" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P139i_has_alternative_form">
     <rdfs:domain rdf:resource="E41_Appellation" />
     <rdfs:range rdf:resource="E41_Appellation" />
   </rdf:Property>
@@ -4061,40 +4056,22 @@ This property is a shortcut of the more fully developed path from E93 Presence t
     <rdfs:label xml:lang="en">place is defined by</rdfs:label>
     <rdfs:comment>This property associates an instance of E53 Place with an instance of E94 Space Primitive that defines it. Syntactic variants or use of different scripts may result in multiple instances of E94 Space Primitive defining exactly the same place. Transformations between different reference systems always result in new definitions of places approximating each other and not in alternative definitions.</rdfs:comment>
     <rdfs:domain rdf:resource="E53_Place" />
-    <rdfs:range rdf:resource="E94_Space_Primitive" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
-  </rdf:Property>
-  <rdf:Property rdf:about="P168i_defines_place">
-    <rdfs:label xml:lang="en">defines place</rdfs:label>
-    <rdfs:domain rdf:resource="E94_Space_Primitive" />
-    <rdfs:range rdf:resource="E53_Place" />
-    <rdfs:subPropertyOf rdf:resource="P1i_identifies" />
-  </rdf:Property>
-  <rdf:Property rdf:about="P169_defines_spacetime_volume">
-    <rdfs:label xml:lang="en">defines spacetime volume</rdfs:label>
-    <rdfs:comment>This property associates an instance of E95 Spacetime Primitive with the instance of E92 Spacetime Volume it defines.</rdfs:comment>
-    <rdfs:domain rdf:resource="E95_Spacetime_Primitive" />
-    <rdfs:range rdf:resource="E92_Spacetime_Volume" />
-    <rdfs:subPropertyOf rdf:resource="P1i_identifies" />
   </rdf:Property>
   <rdf:Property rdf:about="P169i_spacetime_volume_is_defined_by">
     <rdfs:label xml:lang="en">spacetime volume is defined by</rdfs:label>
+    <rdfs:comment xml:lang="en">Scope note for 'P169': This property associates an instance of E95 Spacetime Primitive with the instance of E92 Spacetime Volume it defines.</rdfs:comment>
     <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
-    <rdfs:range rdf:resource="E95_Spacetime_Primitive" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
-  </rdf:Property>
-  <rdf:Property rdf:about="P170_defines_time">
-    <rdfs:label xml:lang="en">defines time</rdfs:label>
-    <rdfs:comment>This property associates an instance of E61 Time Primitive with the instance of E52 Time-Span that constitutes the interpretation of the terms of the time primitive as an extent in absolute, real time. 
-The quantification allows several instances of E61 Time Primitive that are each expressed in different syntactic forms, to define the same instance of E52 Time Span.</rdfs:comment>
-    <rdfs:domain rdf:resource="E61_Time_Primitive" />
-    <rdfs:range rdf:resource="E52_Time-Span" />
-    <rdfs:subPropertyOf rdf:resource="P1i_identifies" />
   </rdf:Property>
   <rdf:Property rdf:about="P170i_time_is_defined_by">
     <rdfs:label xml:lang="en">time is defined by</rdfs:label>
+    <rdfs:comment xml:lang="en">Scope note for 'P170': This property associates an instance of E61 Time Primitive with the instance of E52 Time-Span that constitutes the interpretation of the terms of the time primitive as an extent in absolute, real time. 
+The quantification allows several instances of E61 Time Primitive that are each expressed in different syntactic forms, to define the same instance of E52 Time Span.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
-    <rdfs:range rdf:resource="E61_Time_Primitive" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
   </rdf:Property>
   <rdf:Property rdf:about="P171_at_some_place_within">
@@ -4102,14 +4079,14 @@ The quantification allows several instances of E61 Time Primitive that are each 
     <rdfs:comment>This property describes the maximum spatial extent within which an instance of E53 Place falls. Since instances of E53 Places may not have precisely known spatial extents, the CIDOC CRM supports statements about maximum spatial extents of instances of E53 Place. This property allows an instance of E53 Place’s maximum spatial extent (i.e., its outer boundary) to be assigned an instance of E94 Space Primitive value. 
 This property is a shortcut of the fully developed path from E53 Place, P89 falls within, E53 Place, P168 place is defined by to E94 Space Primitive through a declarative Place that is not explicitly documented, to a Space Primitive: declarative places are defined in CRMgeo (Doerr and Hiebel 2013).</rdfs:comment>
     <rdfs:domain rdf:resource="E53_Place" />
-    <rdfs:range rdf:resource="E94_Space_Primitive" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
   </rdf:Property>
   <rdf:Property rdf:about="P172_contains">
     <rdfs:label xml:lang="en">contains</rdfs:label>
     <rdfs:comment>This property describes a minimum spatial extent which is contained within an instance of E53 Place. Since instances of E53 Place may not have precisely known spatial extents, the CIDOC CRM supports statements about minimum spatial extents of instances of E53 Place. This property allows an instance of E53 Places’s minimum spatial extent (i.e., its inner boundary or a point being within a Place) to be assigned an instance of E94 Space Primitive value. 
 This property is a shortcut of the fully developed path from E53 Place, P89i contains, E53 Place, P168 place is defined by to E94 Space Primitive</rdfs:comment>
     <rdfs:domain rdf:resource="E53_Place" />
-    <rdfs:range rdf:resource="E94_Space_Primitive" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
   </rdf:Property>
   <rdf:Property rdf:about="P173_starts_before_or_with_the_end_of">
     <rdfs:label xml:lang="en">starts before or with the end of</rdfs:label>
@@ -4432,6 +4409,11 @@ This property is transitive.</rdfs:comment>
     <rdfs:domain rdf:resource="E18_Physical_Thing" />
     <rdfs:range rdf:resource="E18_Physical_Thing" />
   </rdf:Property>
+  <rdfs:Class rdf:about="E41_E33_Linguistic_Appellation">
+    <rdfs:label xml:lang="en">Linguistic Appellation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="E41_Appellation" />
+    <rdfs:subClassOf rdf:resource="E33_Linguistic_Object" />
+  </rdfs:Class>
   <rdf:Property rdf:about="P81a_end_of_the_begin">
     <rdfs:label xml:lang="en">end of the begin</rdfs:label>
     <rdfs:label xml:lang="de">Ende des Anfangs</rdfs:label>
@@ -4475,5 +4457,17 @@ This property is transitive.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
     <rdfs:subPropertyOf rdf:resource="P82_at_some_time_within" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P90a_has_lower_value_limit">
+    <rdfs:label xml:lang="en">has lower value limit</rdfs:label>
+    <rdfs:domain rdf:resource="E54_Dimension" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+    <rdfs:subPropertyOf rdf:resource="P90_has_value" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P90b_has_upper_value_limit">
+    <rdfs:label xml:lang="en">has upper value limit</rdfs:label>
+    <rdfs:domain rdf:resource="E54_Dimension" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+    <rdfs:subPropertyOf rdf:resource="P90_has_value" />
   </rdf:Property>
 </rdf:RDF>
