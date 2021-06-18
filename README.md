@@ -8,7 +8,7 @@ This project branch will keep track of draft CIDOC-CRM v7.1.1 RDF implementation
 Draft release date: 18/6/2021
 
 Version: 7.1.1	CIDOC Classes: 81 CIDOC Properties: 160 (Symmetric 4 / Transitive 13 / Reflexive 2)
-- Classes interpreted as Literals: 75 (6 interpreted as rdfs:Literal)
+- CIDOC Classes definitions: 75 (6 interpreted as rdfs:Literal)
 - CIDOC Properties forward definitions in RDF: 158
 - CIDOC Properties backwards definitions in RDF: 149
 - RDF Triple Store extension Classes: 1
