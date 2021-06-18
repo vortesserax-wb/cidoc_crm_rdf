@@ -7,7 +7,7 @@ This project branch will keep track of draft CIDOC-CRM v7.1.1 RDF implementation
 
 Draft release date: 14/6/2021
 
-Version: 7.1.1	CIDOC Classes: 81 CIDOC Properties: 160 (Symmetric 4/ Transitive 13 / Reflexive 2)
+Version: 7.1.1	CIDOC Classes: 81 CIDOC Properties: 160 (Symmetric 4 / Transitive 13 / Reflexive 2)
 - CIDOC Classes definitions in RDF: 78 (3 interpreted as rdfs:Literal)
 - CIDOC Properties forward definitions in RDF: 160
 - CIDOC Properties backwards definitions in RDF: 145
@@ -29,9 +29,9 @@ Policies followed for the RDF implementation of CIDOC v.7.1.1 were created w.r.t
 CIDOC-CRM model defines some classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of E59 Primitive and in RDF they are interpreted as Literals. There are some classes that are not only subclasses of E59 Primitives and this creates a question mark as to whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal. 
 In this DRAFT version we followed the following policies regarding CIDOC Classes implementation in RDF:
 
-> A1. CIDOC Classes that are exclusively subclasses of E59 Primitve are interpreted as rdfs:Literal. 
+> A1. CIDOC Classes that are exclusively subclasses of E59 Primitive are interpreted as rdfs:Literal. 
 
-> A2. CIDOC Classes that are also subClasses of a Class that is not recursive subClassOf E59 Primitive are still implemented as rdfs:Class
+> A2. CIDOC Classes that are also subClasses of a Class that is not recursive subClassOf E59 Primitive are still implemented as rdfs:Class.
 
 **B. CIDOC Properties implementation in RDF**
 
@@ -61,9 +61,9 @@ In this DRAFT version we followed the following policies regarding RDF Triple St
    
 * Did not define 3 Classes due to A1:
 
-  * E59 Primitive
-  * E60 Number
-  * E62 String	  	  
+  * `E59 Primitive`
+  * `E60 Number`
+  * `E62 String`  	  
 
 Did not also define the isA relationships that these classes participate in while their references in rdfs:range of Properties were replaced by rdfs:Literal
 
