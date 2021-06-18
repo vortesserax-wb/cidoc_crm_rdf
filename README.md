@@ -26,12 +26,12 @@ Policies followed for the RDF implementation of CIDOC v.7.1.1 were created w.r.t
 
 **A. CIDOC Classes implementation in RDF**
 
-CIDOC-CRM model defines some classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of E59 Primitive and in RDF they are interpreted as Literals. There are some classes that are not only subclasses of E59 Primitives and this creates a question mark as to whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal. 
+CIDOC-CRM model defines some classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of `E59 Primitive` and in RDF they are interpreted as Literals. There are some classes that are not only subclasses of `E59 Primitive` and this creates a question mark as to whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal. 
 In this DRAFT version we followed the following policies regarding CIDOC Classes implementation in RDF:
 
-> A1. CIDOC Classes that are exclusively subclasses of E59 Primitive are interpreted as rdfs:Literal. 
+> A1. CIDOC Classes that are exclusively subclasses of `E59 Primitive` are interpreted as rdfs:Literal. 
 
-> A2. CIDOC Classes that are also subClasses of a Class that is not recursive subClassOf E59 Primitive are still implemented as rdfs:Class.
+> A2. CIDOC Classes that are also subClasses of a Class that is not recursive subClassOf `E59 Primitive` are still implemented as rdfs:Class.
 
 **B. CIDOC Properties implementation in RDF**
 
@@ -52,9 +52,9 @@ In this DRAFT version we followed the following policies regarding CIDOC Propert
 Common practice in Triple stores leads to specific extensions/addtions in Classes or Properties. More information in [Implementing the CIDOC Conceptual Reference Model in RDF](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf)
 In this DRAFT version we followed the following policies regarding RDF Triple Store extensions:
 
-> C1. addition of 2 additional subPropertiesOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive` for the exact time specification of E61 Time Primitive 
+> C1. addition of 2 additional subPropertiesOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive` for the exact time specification of `E61 Time Primitive`
 
-> C2. addition of 2 additional subPropertiesOf `E52 Time-Span. P82 at some time within: E61 Time Primitive` for the exact time specification of E61 Time Primitive
+> C2. addition of 2 additional subPropertiesOf `E52 Time-Span. P82 at some time within: E61 Time Primitive` for the exact time specification of `E61 Time Primitive`
 
 
 ### Policies outcome
@@ -66,6 +66,7 @@ In this DRAFT version we followed the following policies regarding RDF Triple St
   * `E62 String`  	  
 
 Did not also define the isA relationships that these classes participate in while their references in rdfs:range of Properties were replaced by rdfs:Literal
+
 
 * Did not define inverse Properties for 4 Cidoc Properties due to B1 (literal domain/range)
 
