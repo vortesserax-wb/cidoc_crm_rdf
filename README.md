@@ -69,9 +69,11 @@ The following are declarations of frequently used multiple instatiations as clas
 > D1. addition of 1 additional subClass of `E41 Appellation` and `E33 Linguistic Object` for all Appellations being regarded
 specific to or characteristic for a language group and being directly described by a literal and not indirectly via a URI.
 
+&nbsp;
+
 ### Policies outcome
 
-Following the aforementioned policies resulted in the following RDF generaton decisions:
+Following the aforementioned policies resulted in the following RDF generation decisions:
 
 &nbsp;
 
@@ -125,7 +127,7 @@ Following the aforementioned policies resulted in the following RDF generaton de
 
 - Used the backwards/inverse direction in place of the redundant inverse one due to B2 (no inverse name defined, and same domain/range)
 
-  - Hierarchical link of property `P10i` with `E92 Spacetime Volume. P132 spatiotemporally overlaps with: E92 Spacetime Volume`
+  - Hierarchical link of property `P10i` with `E92 Spacetime Volume. P132 spatiotemporally overlaps with: E92 Spacetime Volume` instead of the inverse one P132i.
 
 &nbsp;
 
