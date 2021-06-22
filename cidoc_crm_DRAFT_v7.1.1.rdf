@@ -9,7 +9,7 @@ Note that this is NOT a definition of the CIDOC CRM, but an encoding
 derived from the authoritative release of the CIDOC CRM v7.1.1 April 2021 on 
 http://cidoc-crm.org/version/version-7.1.1
 
-Created by FORTH-ICS Friday June 18, 2021
+Created by FORTH-ICS Tuesday June 22, 2021
 
 
 Encoding Rules:
@@ -1172,7 +1172,7 @@ This property is transitive and reflexive.</rdfs:comment>
     <rdfs:label xml:lang="zh">时间上涵盖</rdfs:label>
     <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
     <rdfs:range rdf:resource="E92_Spacetime_Volume" />
-    <rdfs:subPropertyOf rdf:resource="P132i_spatiotemporally_overlaps_with" />
+    <rdfs:subPropertyOf rdf:resource="P132_spatiotemporally_overlaps_with" />
   </rdf:Property>
   <rdf:Property rdf:about="P11_had_participant">
     <rdfs:label xml:lang="en">had participant</rdfs:label>
@@ -3331,10 +3331,6 @@ This property is symmetric.</rdfs:comment>
     <rdfs:domain rdf:resource="E53_Place" />
     <rdfs:range rdf:resource="E53_Place" />
   </rdf:Property>
-  <rdf:Property rdf:about="P121i_overlaps_with">
-    <rdfs:domain rdf:resource="E53_Place" />
-    <rdfs:range rdf:resource="E53_Place" />
-  </rdf:Property>
   <rdf:Property rdf:about="P122_borders_with">
     <rdfs:label xml:lang="en">borders with</rdfs:label>
     <rdfs:label xml:lang="de">grenzt an</rdfs:label>
@@ -3346,10 +3342,6 @@ This property is symmetric.</rdfs:comment>
     <rdfs:comment>This symmetric property associates an instance of E53 Place with another instance of E53 Place which shares a part of its border. 
 This property is purely spatial. It does not imply that the phenomena that define, by their extent, places related by P122 borders with have ever shared a respective border at the same time or even coexisted. In particular, this may be the case when the respective common border is formed by a natural feature. 
 This property is not transitive. This property is symmetric.</rdfs:comment>
-    <rdfs:domain rdf:resource="E53_Place" />
-    <rdfs:range rdf:resource="E53_Place" />
-  </rdf:Property>
-  <rdf:Property rdf:about="P122i_borders_with">
     <rdfs:domain rdf:resource="E53_Place" />
     <rdfs:range rdf:resource="E53_Place" />
   </rdf:Property>
@@ -3561,19 +3553,11 @@ This property is symmetric</rdfs:comment>
     <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
     <rdfs:range rdf:resource="E92_Spacetime_Volume" />
   </rdf:Property>
-  <rdf:Property rdf:about="P132i_spatiotemporally_overlaps_with">
-    <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
-    <rdfs:range rdf:resource="E92_Spacetime_Volume" />
-  </rdf:Property>
   <rdf:Property rdf:about="P133_is_spatiotemporally_separated_from">
     <rdfs:label xml:lang="en">is spatiotemporally separated from</rdfs:label>
     <rdfs:comment>This symmetric property associates two instances of E92 Spacetime Volume that have no extents in common. If only the fuzzy boundaries of the instances of E92 Spacetime Volume overlap, this property cannot be determined from observation alone and therefore should not be applied. However, there may be other forms of justification that the two instances of E92 Spacetime Volume must not have any of their extents in common regardless of where and when precisely. 
 If this property holds for two instances of E92 Spacetime Volume then it cannot be the case that P132 spatiotemporally overlaps with also holds for the same two instances. Furthermore, there are cases where neither P132 spatiotemporally overlaps with nor P133 is spatiotemporally separated from holds between two instances of E92 Spacetime Volume. This would occur where only an overlap of the fuzzy boundaries of the two instances of E92 Spacetime Volume occurs and no other evidence is available.
 This property is not transitive. This property is symmetric.</rdfs:comment>
-    <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
-    <rdfs:range rdf:resource="E92_Spacetime_Volume" />
-  </rdf:Property>
-  <rdf:Property rdf:about="P133i_is_spatiotemporally_separated_from">
     <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
     <rdfs:range rdf:resource="E92_Spacetime_Volume" />
   </rdf:Property>
@@ -3720,10 +3704,6 @@ This property is also used for the relationship between an original and a digiti
     <rdfs:comment>This property associates an instance of E41 Appellation with another instance of E41 Appellation that constitutes a derivative or variant of the former and that may also be used for identifying items identified by the former, in suitable contexts, independent from the particular item to be identified. This property should not be confused with additional variants of names used characteristically for a single, particular item, such as individual nicknames. It is an asymmetric relationship, where the range expresses the derivative, if such a direction can be established. Otherwise, the relationship is symmetric. The relationship is not transitive.
 Multiple names assigned to an object, which do not apply to all things identified with the specific instance of E41 Appellation, should be modelled as repeated values of P1 is identified by (identifies) of this object.
 P139.1 has type allows the type of derivation to be refined, for instance “transliteration from Latin 1 to ASCII”.</rdfs:comment>
-    <rdfs:domain rdf:resource="E41_Appellation" />
-    <rdfs:range rdf:resource="E41_Appellation" />
-  </rdf:Property>
-  <rdf:Property rdf:about="P139i_has_alternative_form">
     <rdfs:domain rdf:resource="E41_Appellation" />
     <rdfs:range rdf:resource="E41_Appellation" />
   </rdf:Property>
