@@ -164,7 +164,7 @@ Following the aforementioned policies resulted in the following RDF generation d
   - `E54 Dimension. P90 has value: E60 Number`
   - `E53 Place. P168 place is defined by: E94 Space Primitive`
   - `E92 Spacetime Volume. P169i spacetime volume is defined by: E95 Spacetime Primitive`
-  - `E52 Time-Span Primitive. P170i time is defined by: E61 Time`
+  - `E52 Time-Span Primitive. P170i time is defined by: E61 Time Primitive`
   - `E53 Place. P171 at some place within: E94 Space Primitive`
   - `E53 Place. P172 contains: E94 Space Primitive`
   - `E90 Symbolic Object. P190 has symbolic content: E62 String`
