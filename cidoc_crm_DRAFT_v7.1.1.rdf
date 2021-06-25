@@ -9,7 +9,7 @@ Note that this is NOT a definition of the CIDOC CRM, but an encoding
 derived from the authoritative release of the CIDOC CRM v7.1.1 April 2021 on 
 http://cidoc-crm.org/version/version-7.1.1
 
-Created by FORTH-ICS Tuesday June 22, 2021
+Created by FORTH-ICS Friday June 25, 2021
 
 
 Encoding Rules:
@@ -971,6 +971,10 @@ This property is a shortcut for the path from E1 CRM Entity through P140i was at
 It is also a shortcut for the path from E1 CRM Entity through P1 is identified by, E41 Appellation, P139 has alternative form to E41 Appellation.</rdfs:comment>
     <rdfs:domain rdf:resource="E1_CRM_Entity" />
     <rdfs:range rdf:resource="E41_Appellation" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
   </rdf:Property>
   <rdf:Property rdf:about="P1i_identifies">
     <rdfs:label xml:lang="en">identifies</rdfs:label>
@@ -1021,7 +1025,11 @@ In particular, it captures the characterisation of the item itself, its internal
 Like property P2 has type (is type of), this property is a consequence of the restricted focus of the CIDOC CRM. The aim is not to capture, in a structured form, everything that can be said about an item; indeed, the CIDOC CRM formalism is not regarded as sufficient to express everything that can be said. Good practice requires use of distinct note fields for different aspects of a characterisation. The P3.1 has type property of P3 has note allows differentiation of specific notes, e.g., “construction”, “decoration” etc. 
 An item may have many notes, but a note is attached to a specific item.</rdfs:comment>
     <rdfs:domain rdf:resource="E1_CRM_Entity" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P3_has_note" />
   </rdf:Property>
   <rdf:Property rdf:about="P4_has_time-span">
     <rdfs:label xml:lang="en">has time-span</rdfs:label>
@@ -2302,7 +2310,11 @@ This property is a shortcut. A more detailed representation can make use of the 
 This may be used as a method of checking inventory counts with regard to aggregate or collective objects. What constitutes a part or component depends on the context and requirements of the documentation. Normally, the parts documented in this way would not be considered as worthy of individual attention.
 For a more complete description, objects may be decomposed into their components and constituents using P46 is composed of (forms parts of) and P45 consists of (is incorporated in). This allows each element to be described individually.</rdfs:comment>
     <rdfs:domain rdf:resource="E19_Physical_Object" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P57_has_number_of_parts" />
   </rdf:Property>
   <rdf:Property rdf:about="P59_has_section">
     <rdfs:label xml:lang="en">has section</rdfs:label>
@@ -2627,8 +2639,12 @@ The residence may be either the place where the actor resides, or a legally regi
     <rdfs:label xml:lang="zh">起点认定的性质是</rdfs:label>
     <rdfs:comment>This property associates an instance of E52 Time-Span with a note detailing the scholarly or scientific opinions and justifications about the certainty, precision, sources etc. of its beginning. Such notes may also be used to elaborate arguments about constraints or to give explanations of alternatives.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P3_has_note" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P79_beginning_is_qualified_by" />
   </rdf:Property>
   <rdf:Property rdf:about="P80_end_is_qualified_by">
     <rdfs:label xml:lang="en">end is qualified by</rdfs:label>
@@ -2640,8 +2656,12 @@ The residence may be either the place where the actor resides, or a legally regi
     <rdfs:label xml:lang="zh">终点认定的性质是</rdfs:label>
     <rdfs:comment>This property associates an instance of E52 Time-Span with a note detailing the scholarly or scientific opinions and justifications about the end of this time-span concerning certainty, precision, sources etc. This property may also be used to describe arguments constraining possible dates and to distinguish reasons for alternative dates.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P3_has_note" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P80_end_is_qualified_by" />
   </rdf:Property>
   <rdf:Property rdf:about="P81_ongoing_throughout">
     <rdfs:label xml:lang="en">ongoing throughout</rdfs:label>
@@ -2653,7 +2673,11 @@ The residence may be either the place where the actor resides, or a legally regi
     <rdfs:label xml:lang="zh">时段的数值至少涵盖</rdfs:label>
     <rdfs:comment>This property associates an instance of E52 Time-Span with an instance of E61 Time Primitive specifying a minimum period of time covered by it. Since Time-Spans may not have precisely known temporal extents, the CIDOC CRM supports statements about the minimum and maximum temporal extents of Time-Spans. This property allows a Time-Span’s minimum temporal extent (i.e., its inner boundary) to be assigned an E61 Time Primitive value. Time Primitives are treated by the CIDOC CRM as application or system specific date intervals, and are not further analysed. If different sources of evidence justify different minimum extents without contradicting each other, the smallest interval including all these extents will be the best estimate. This should be taken into account for information integration.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P81_ongoing_throughout" />
   </rdf:Property>
   <rdf:Property rdf:about="P82_at_some_time_within">
     <rdfs:label xml:lang="en">at some time within</rdfs:label>
@@ -2665,7 +2689,11 @@ The residence may be either the place where the actor resides, or a legally regi
     <rdfs:label xml:lang="zh">时段的数值不会超越</rdfs:label>
     <rdfs:comment>This property describes the maximum period of time within which an E52 Time-Span falls. Since Time-Spans may not have precisely known temporal extents, the CIDOC CRM supports statements about the minimum and maximum temporal extents of Time-Spans. This property allows a Time-Span’s maximum temporal extent (i.e., its outer boundary) to be assigned an E61 Time Primitive value. Time Primitives are treated by the CIDOC CRM as application or system specific date intervals, and are not further analysed. If different sources of evidence justify different maximum extents without contradicting each other, the resulting intersection of all these extents will be the best estimate. This should be taken into account for information integration.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P82_at_some_time_within" />
   </rdf:Property>
   <rdf:Property rdf:about="P86_falls_within">
     <rdfs:label xml:lang="en">falls within</rdfs:label>
@@ -2726,7 +2754,11 @@ This property is transitive and reflexive.</rdfs:comment>
     <rdfs:label xml:lang="zh">有数值</rdfs:label>
     <rdfs:comment>This property allows an instance of E54 Dimension to be approximated by an instance of E60 Number primitive.</rdfs:comment>
     <rdfs:domain rdf:resource="E54_Dimension" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P90_has_value" />
   </rdf:Property>
   <rdf:Property rdf:about="P91_has_unit">
     <rdfs:label xml:lang="en">has unit</rdfs:label>
@@ -4039,6 +4071,9 @@ This property is a shortcut of the more fully developed path from E93 Presence t
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
   </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P168_place_is_defined_by" />
+  </rdf:Property>
   <rdf:Property rdf:about="P169i_spacetime_volume_is_defined_by">
     <rdfs:label xml:lang="en">spacetime volume is defined by</rdfs:label>
     <rdfs:comment xml:lang="en">Scope note for 'P169': This property associates an instance of E95 Spacetime Primitive with the instance of E92 Spacetime Volume it defines.</rdfs:comment>
@@ -4046,13 +4081,20 @@ This property is a shortcut of the more fully developed path from E93 Presence t
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
   </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P169i_spacetime_volume_is_defined_by" />
+  </rdf:Property>
   <rdf:Property rdf:about="P170i_time_is_defined_by">
     <rdfs:label xml:lang="en">time is defined by</rdfs:label>
     <rdfs:comment xml:lang="en">Scope note for 'P170': This property associates an instance of E61 Time Primitive with the instance of E52 Time-Span that constitutes the interpretation of the terms of the time primitive as an extent in absolute, real time. 
 The quantification allows several instances of E61 Time Primitive that are each expressed in different syntactic forms, to define the same instance of E52 Time Span.</rdfs:comment>
     <rdfs:domain rdf:resource="E52_Time-Span" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P170i_time_is_defined_by" />
   </rdf:Property>
   <rdf:Property rdf:about="P171_at_some_place_within">
     <rdfs:label xml:lang="en">at some place within</rdfs:label>
@@ -4061,12 +4103,18 @@ This property is a shortcut of the fully developed path from E53 Place, P89 fall
     <rdfs:domain rdf:resource="E53_Place" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
   </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P171_at_some_place_within" />
+  </rdf:Property>
   <rdf:Property rdf:about="P172_contains">
     <rdfs:label xml:lang="en">contains</rdfs:label>
     <rdfs:comment>This property describes a minimum spatial extent which is contained within an instance of E53 Place. Since instances of E53 Place may not have precisely known spatial extents, the CIDOC CRM supports statements about minimum spatial extents of instances of E53 Place. This property allows an instance of E53 Places’s minimum spatial extent (i.e., its inner boundary or a point being within a Place) to be assigned an instance of E94 Space Primitive value. 
 This property is a shortcut of the fully developed path from E53 Place, P89i contains, E53 Place, P168 place is defined by to E94 Space Primitive</rdfs:comment>
     <rdfs:domain rdf:resource="E53_Place" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P172_contains" />
   </rdf:Property>
   <rdf:Property rdf:about="P173_starts_before_or_with_the_end_of">
     <rdfs:label xml:lang="en">starts before or with the end of</rdfs:label>
@@ -4324,8 +4372,12 @@ This property is not transitive.</rdfs:comment>
 This property only applies to instances of E90 Symbolic Object that can be represented completely in this form. The representation may be more specific than the symbolic level defining the identity condition of the represented. This depends on the type of the symbolic object represented. For instance, if a name has type "Modern Greek character sequence", it may be represented in a loss-free Latin transcription, meaning however the sequence of Greek letters. 
 As another example, if the represented object has type "English words sequence", American English or British English spelling variants may be chosen to represent the English word "colour" without defining a different symbolic object. If a name has type "European traditional name", no particular string may define its content.</rdfs:comment>
     <rdfs:domain rdf:resource="E90_Symbolic_Object" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P3_has_note" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P190_has_symbolic_content" />
   </rdf:Property>
   <rdf:Property rdf:about="P191_had_duration">
     <rdfs:label xml:lang="en">had duration</rdfs:label>
@@ -4393,6 +4445,7 @@ This property is transitive.</rdfs:comment>
     <rdfs:label xml:lang="en">Linguistic Appellation</rdfs:label>
     <rdfs:subClassOf rdf:resource="E41_Appellation" />
     <rdfs:subClassOf rdf:resource="E33_Linguistic_Object" />
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString" />
   </rdfs:Class>
   <rdf:Property rdf:about="P81a_end_of_the_begin">
     <rdfs:label xml:lang="en">end of the begin</rdfs:label>
@@ -4403,7 +4456,11 @@ This property is transitive.</rdfs:comment>
     <rdfs:label xml:lang="ru">конец начала</rdfs:label>
     <rdfs:domain rdf:resource="E52_Time-Span" />
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P81_ongoing_throughout" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P81a_end_of_the_begin" />
   </rdf:Property>
   <rdf:Property rdf:about="P81b_begin_of_the_end">
     <rdfs:label xml:lang="en">begin of the end</rdfs:label>
@@ -4414,7 +4471,11 @@ This property is transitive.</rdfs:comment>
     <rdfs:label xml:lang="ru">начать в конце</rdfs:label>
     <rdfs:domain rdf:resource="E52_Time-Span" />
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P81_ongoing_throughout" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P81b_begin_of_the_end" />
   </rdf:Property>
   <rdf:Property rdf:about="P82a_begin_of_the_begin">
     <rdfs:label xml:lang="en">begin of the begin</rdfs:label>
@@ -4425,7 +4486,11 @@ This property is transitive.</rdfs:comment>
     <rdfs:label xml:lang="ru">начать с начала</rdfs:label>
     <rdfs:domain rdf:resource="E52_Time-Span" />
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P82_at_some_time_within" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P82a_begin_of_the_begin" />
   </rdf:Property>
   <rdf:Property rdf:about="P82b_end_of_the_end">
     <rdfs:label xml:lang="en">end of the end</rdfs:label>
@@ -4436,18 +4501,30 @@ This property is transitive.</rdfs:comment>
     <rdfs:label xml:lang="ru">конец конец</rdfs:label>
     <rdfs:domain rdf:resource="E52_Time-Span" />
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime" />
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P82_at_some_time_within" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P82b_end_of_the_end" />
   </rdf:Property>
   <rdf:Property rdf:about="P90a_has_lower_value_limit">
     <rdfs:label xml:lang="en">has lower value limit</rdfs:label>
     <rdfs:domain rdf:resource="E54_Dimension" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P90_has_value" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P90a_has_lower_value_limit" />
   </rdf:Property>
   <rdf:Property rdf:about="P90b_has_upper_value_limit">
     <rdfs:label xml:lang="en">has upper value limit</rdfs:label>
     <rdfs:domain rdf:resource="E54_Dimension" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer" />
     <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal" />
     <rdfs:subPropertyOf rdf:resource="P90_has_value" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P90b_has_upper_value_limit" />
   </rdf:Property>
 </rdf:RDF>
