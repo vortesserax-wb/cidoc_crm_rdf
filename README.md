@@ -4,7 +4,7 @@ This project branch will keep track of draft CIDOC-CRM v7.1.1 RDF implementation
 
 ## Statistics
 
-Draft release date: 25/6/2021
+Draft release date: 26/6/2021
 
 Version: 7.1.1 CIDOC Classes: 81 CIDOC Properties: 160 (Symmetric 4 / Transitive 13 / Reflexive 2)
 
@@ -35,7 +35,7 @@ Policies followed for the RDF implementation of CIDOC v.7.1.1 were created w.r.t
 CIDOC-CRM model defines some classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of `E59 Primitive` and in RDF they are interpreted as Literals. There are some classes that are not only subclasses of `E59 Primitive` and this creates a question mark on whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.
 In this DRAFT version we followed the following policies regarding CIDOC Classes implementation in RDF:
 
-> A1. CIDOC Classes that are subClasses of `E59 Primitive` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class. 
+> A1. CIDOC Classes that are subClasses of `E59 Primitive` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class.
 
 &nbsp;
 
@@ -44,11 +44,11 @@ In this DRAFT version we followed the following policies regarding CIDOC Classes
 The decisions in policy A affect the implementation of Cidoc Properties in RDF. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason. 
 In this DRAFT version we followed the following policies regarding CIDOC Properties implementation in RDF:
 
-> B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1). 
+> B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1).
 
 >> B1a. In the latter case, the scope note of such properties `Pxyz`, is transfered to the scope note definition of the inverse property `Pxyzi` and prefixed with `Scope note for 'Pxyz':`.
 
->> B1b. Following the guidelines from [`RDF implementation tests`](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf) {1,2} properties with range interpreted as Literal (A.1) are all declared as subproperties of `rdfs:label` while their superproperties should define an additional range of `rdfs:Literal` whenever their range is a class not included in A.1. Similarly for the inverse/backwards direction.
+>> B1b. Following the guidelines from [`RDF implementation tests`](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf) {1,2} properties with range interpreted as Literal (A.1) are all declared as subproperties of `rdfs:label`. Similarly for the inverse/backwards direction.
 
 > B2. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property should be used for **both** directions and **no inverse/backwards property** needs to be defined.
 
@@ -84,9 +84,9 @@ Following the aforementioned policies resulted in the following RDF generation d
 - Did not define 6 Classes due to **A1**:
 
   - `E59 Primitive`
-  - `E60 Number` when used as property range, mapped to `xsd:integer` (as example datatype) and `rdfs:Literal` (in general)
-  - `E61 Time Primitive` when used as property range, mapped to `xsd:dateTime` (as example datatype) and `rdfs:Literal` (in general)
-  - `E62 String` when used as property range, mapped to `xsd:string` (as example datatype) and `rdfs:Literal` (in general)
+  - `E60 Number`
+  - `E61 Time Primitive`
+  - `E62 String`
   - `E94 Space Primitive`
   - `E95 Spacetime Primitive`
 
@@ -137,12 +137,12 @@ Following the aforementioned policies resulted in the following RDF generation d
 
 - Added the following 6 RDF property definitions due to **C1, C2 and C3**
 
-  - `E52 Time-Span. P81a end of the begin: xsd:dateTime & rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
-  - `E52 Time-Span. P81b begin of the end: xsd:dateTime & rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
-  - `E52 Time-Span. P82a begin of the begin: xsd:dateTime & rdfs:Literal` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)
-  - `E52 Time-Span. P82b end of the end: xsd:dateTime & rdfs:Literal` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)
-  - `E54 Dimension. P90a has lower value limit: xsd:integer & dfs:Literal` (subPropertyOf `E54 Dimension. P90 has value: E60 Number`)
-  - `E54 Dimension. P90b has upper value limit: xsd:integer & rdfs:Literal` (subPropertyOf `E54 Dimension. P90 has value: E60 Number`)  
+  - `E52 Time-Span. P81a end of the begin: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
+  - `E52 Time-Span. P81b begin of the end: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
+  - `E52 Time-Span. P82a begin of the begin: rdfs:Literal` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)
+  - `E52 Time-Span. P82b end of the end: rdfs:Literal` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)
+  - `E54 Dimension. P90a has lower value limit: rdfs:Literal` (subPropertyOf `E54 Dimension. P90 has value: E60 Number`)
+  - `E54 Dimension. P90b has upper value limit: rdfs:Literal` (subPropertyOf `E54 Dimension. P90 has value: E60 Number`)  
 
 &nbsp;
 
@@ -168,15 +168,9 @@ Following the aforementioned policies resulted in the following RDF generation d
   - `E53 Place. P171 at some place within: E94 Space Primitive`
   - `E53 Place. P172 contains: E94 Space Primitive`
   - `E90 Symbolic Object. P190 has symbolic content: E62 String`
-  - `E52 Time-Span. P81a end of the begin: xsd:dateTime & rdfs:Literal`
-  - `E52 Time-Span. P81b begin of the end: xsd:dateTime & rdfs:Literal`
-  - `E52 Time-Span. P82a begin of the begin: xsd:dateTime & rdfs:Literal`
-  - `E52 Time-Span. P82b end of the end: xsd:dateTime & rdfs:Literal`
-  - `E54 Dimension. P90a has lower value limit: xsd:integer & dfs:Literal`
-  - `E54 Dimension. P90b has upper value limit: xsd:integer & rdfs:Literal`
-
-&nbsp;
-
-- Added the following additional range to `rdfs:Literal` due to **B1b** 
-
-  - `E1 CRM Entity. P1 is identified by: E41 Appellation & rdfs:Litereal`
+  - `E52 Time-Span. P81a end of the begin: rdfs:Literal`
+  - `E52 Time-Span. P81b begin of the end: rdfs:Literal`
+  - `E52 Time-Span. P82a begin of the begin: rdfs:Literal`
+  - `E52 Time-Span. P82b end of the end: rdfs:Literal`
+  - `E54 Dimension. P90a has lower value limit: rdfs:Literal`
+  - `E54 Dimension. P90b has upper value limit: rdfs:Literal`
