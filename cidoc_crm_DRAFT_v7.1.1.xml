@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <cidoc_crm version="7.1.1" lang="en" classes="81" properties="160">
   <!--
-CIDOC CRM v7.1.1 (draft) encoded in XML
+CIDOC CRM v7.1.1 encoded in XML
 
-This is the encoding approved by CRM-SIG in the meeting {{pending for approval}}
-as the current version for the CIDOC CRM namespace.
+This is the encoding approved by CRM-SIG in the meeting {{pending for approval}}.
+
 Note that this is NOT a definition of the CIDOC CRM, but an encoding
-derived from the authoritative release of the CIDOC CRM v7.1.1 April 2021 on 
-http://cidoc-crm.org/version/version-7.1.1
+derived from the authoritative release of the CIDOC CRM v7.1.1 May 2021 on 
+http://cidoc-crm.org/Version/version-7.1.1
 
-Created by FORTH-ICS Saturday June 26, 2021
+Created by FORTH-ICS Monday June 28, 2021
 
 -->
   <classes>

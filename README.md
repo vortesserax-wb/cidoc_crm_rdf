@@ -44,11 +44,7 @@ In this DRAFT version we followed the following policies regarding CIDOC Classes
 The decisions in policy A affect the implementation of Cidoc Properties in RDF. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason. 
 In this DRAFT version we followed the following policies regarding CIDOC Properties implementation in RDF:
 
-> B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1).
-
->> B1a. In the latter case, the scope note of such properties `Pxyz`, is transfered to the scope note definition of the inverse property `Pxyzi` and prefixed with `Scope note for 'Pxyz':`.
-
->> B1b. Following the guidelines from [`RDF implementation tests`](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf) {1,2} properties with range interpreted as Literal (A.1) are all declared as subproperties of `rdfs:label`. Similarly for the inverse/backwards direction.
+> B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1). In the latter case, the scope note of such properties `Pxyz`, is transfered to the scope note definition of the inverse property `Pxyzi` and prefixed with `Scope note for 'Pxyz':`.
 
 > B2. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property should be used for **both** directions and **no inverse/backwards property** needs to be defined.
 
@@ -99,7 +95,7 @@ Following the aforementioned policies resulted in the following RDF generation d
   - `E95 Spacetime Primitive. P169 defines spacetime volume: E92 Spacetime Volume`
   - `E61 Time Primitive. P170 defines time: E52 Time-Span`
 
-     **Note:** scope notes of P169 and P170 that cannot be defined are used as scope notes of `P169i` and `P170i` with the prefix defined in **B1a**.  
+     **Note:** scope notes of P169 and P170 that cannot be defined are used as scope notes of `P169i` and `P170i` with the prefix defined in **B1**.  
 
 &nbsp;
 
@@ -148,29 +144,4 @@ Following the aforementioned policies resulted in the following RDF generation d
 
 - Added the following 1 RDF class definition due to **D1**
 
-  - `E41_E33_Linguistic_Appellation` subClass of `E41_Appellation` and `E33_Linguistic_Object` and `rdf:langString`
-
-&nbsp;
-
-- Defined the following as subclasses of `rdfs:label` due to **B1b**
-
-  - `E1 CRM Entity. P1 is identified by: E41 Appellation`
-  - `E1 CRM Entity. P3 has note: E62 String`
-  - `E19 Physical Object. P57 has number of parts: E60 Number`
-  - `E52 Time-Span. P79 beginning is qualified by: E62 String`
-  - `E52 Time-Span. P80 end is qualified by: E62 String`
-  - `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`
-  - `E52 Time-Span. P82 at some time within: E61 Time Primitive`  
-  - `E54 Dimension. P90 has value: E60 Number`
-  - `E53 Place. P168 place is defined by: E94 Space Primitive`
-  - `E92 Spacetime Volume. P169i spacetime volume is defined by: E95 Spacetime Primitive`
-  - `E52 Time-Span Primitive. P170i time is defined by: E61 Time Primitive`
-  - `E53 Place. P171 at some place within: E94 Space Primitive`
-  - `E53 Place. P172 contains: E94 Space Primitive`
-  - `E90 Symbolic Object. P190 has symbolic content: E62 String`
-  - `E52 Time-Span. P81a end of the begin: rdfs:Literal`
-  - `E52 Time-Span. P81b begin of the end: rdfs:Literal`
-  - `E52 Time-Span. P82a begin of the begin: rdfs:Literal`
-  - `E52 Time-Span. P82b end of the end: rdfs:Literal`
-  - `E54 Dimension. P90a has lower value limit: rdfs:Literal`
-  - `E54 Dimension. P90b has upper value limit: rdfs:Literal`
+  - `E41_E33_Linguistic_Appellation` subClass of `E41_Appellation` and `E33_Linguistic_Object`
