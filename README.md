@@ -4,7 +4,7 @@ This project branch will keep track of draft CIDOC-CRM v7.1.1 RDF implementation
 
 ## Statistics
 
-Draft release date: 26/6/2021
+Draft release date: 10/7/2021
 
 Version: 7.1.1 CIDOC Classes: 81 CIDOC Properties: 160 (Symmetric 4 / Transitive 13 / Reflexive 2)
 
@@ -44,7 +44,7 @@ In this DRAFT version we followed the following policies regarding CIDOC Classes
 The decisions in policy A affect the implementation of Cidoc Properties in RDF. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason. 
 In this DRAFT version we followed the following policies regarding CIDOC Properties implementation in RDF:
 
-> B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1). In the latter case, the scope note of such properties `Pxyz`, is transfered to the scope note definition of the inverse property `Pxyzi` and prefixed with `Scope note for 'Pxyz':`.
+> B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1).
 
 > B2. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property should be used for **both** directions and **no inverse/backwards property** needs to be defined.
 
@@ -68,6 +68,33 @@ The following are declarations of frequently used multiple instatiations as clas
 
 > D1. addition of 1 additional subClass of `E41 Appellation` and `E33 Linguistic Object` for all Appellations being regarded
 specific to or characteristic for a language group and being directly described by a literal and not indirectly via a URI.
+
+&nbsp;
+
+#### **E. Translations and Scope notes**
+
+> E1. **Translations** Each RDF Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
+
+- The English label of the `CurrentVersion` that this rdf is refferring to is *almost Equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for.
+E.g. In order to accept a translation for `E22 Human-Made Object` in CurrentVersion (7.1.1) we should have a tranlation for E22 that was created based on a CIDOC version that used the same name for E22. E22 class name changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7 so the only **valid** tranlsations would be these that were created since 6.2.7. Currently no such translation has been created so `E22 Human-Made Object` in CurrentVersion (7.1.1) does not define any translation in current RDF File.
+
+- Another option is to qualify translations as **valid** based on the scope note comparison of `CurrentVersion` and `TranslationVersion`. Since scope note includes formatting info the comparison should ingnore formatting changes.
+
+Currently in this version we follow the option to qualify translations as valid based on the comparison of their name in the relevant cidoc versions.
+
+&nbsp;
+
+> E2. **Scope notes** are defined as rdfs:comment including just the text of the official CIDOC-CRM version in English language. Since scope note is not just simple text but includes formatting, simple removal of formatting does not always produce a readable format. Thus we followed the following simple conventions for the transformation of CIDOC-CRM scope note text in a readable rdfs:comment:
+
+- Each Paragrah defines a new line
+- Each element in an unordered list defines a new line
+- Each element in an ordered list defines a new line prefixed with `'{order}. '`
+- Each superscript text is separated from its base with `'-'`
+- Each subscript text is separated from its base with `'_'` (none found)
+
+&nbsp;
+
+> E3. **Scope notes of Inverse Properties**. Scope notes for the inverse/backwards direction of Properties is not defined as it is covered by the definition of the direct/forward direction definition. Whenever the direct/forward property direction of `Pxyz` is not defined due to **B1**, then its scope note, is used as the scope note of the inverse/backwards property `Pxyzi` and prefixed with `Scope note for 'Pxyz':`.
 
 &nbsp;
 
