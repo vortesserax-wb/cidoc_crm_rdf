@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:crm="http://www.cidoc-crm.org/cidoc-crm/" xml:lang="en" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
-  <!--
+	<!--
 CIDOC CRM v7.1.1 (draft) encoded in RDFS
 
 This is the encoding approved by CRM-SIG in the meeting {{pending for approval}}
@@ -9,7 +9,7 @@ Note that this is NOT a definition of the CIDOC CRM, but an encoding
 derived from the authoritative release of the CIDOC CRM v7.1.1 May 2021 on 
 http://cidoc-crm.org/Version/version-7.1.1
 
-Created by FORTH-ICS Saturday July 10, 2021
+Created by FORTH-ICS Tuesday July 13, 2021
 
 
 Encoding Rules:
@@ -972,6 +972,9 @@ This property is a shortcut for the path from E1 CRM Entity through P140i was at
 It is also a shortcut for the path from E1 CRM Entity through P1 is identified by, E41 Appellation, P139 has alternative form to E41 Appellation.</rdfs:comment>
     <rdfs:domain rdf:resource="E1_CRM_Entity" />
     <rdfs:range rdf:resource="E41_Appellation" />
+  </rdf:Property>
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
   </rdf:Property>
   <rdf:Property rdf:about="P1i_identifies">
     <rdfs:label xml:lang="en">identifies</rdfs:label>

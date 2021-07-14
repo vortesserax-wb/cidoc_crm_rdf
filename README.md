@@ -50,30 +50,39 @@ In this DRAFT version we followed the following policies regarding CIDOC Propert
 
 &nbsp;
 
-#### **C. Implementing Value Intervals**
+#### **C. RDF extensions**
 
-The following are property pairs needed to simulate interval-valued primitive values foreseen by the CRM:
+Following the implemetation tests defined in [Implementing the CIDOC Conceptual Reference Model in RDF](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf), the following RDF extentions where implemented.
 
-> C1. addition of 2 additional subPropertiesOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive` for the exact time specification of `E61 Time Primitive`.
-
-> C2. addition of 2 additional subPropertiesOf `E52 Time-Span. P82 at some time within: E61 Time Primitive` for the exact time specification of `E61 Time Primitive`.
-
-> C3. addition of 2 additional subPropertiesOf `E54 Dimension. P90 has value: E60 Number` for the upper and lower boundaries specification of `E60 Number`.
+> C1. `rdfs:label` is declared as subPropertyOf `P1 is identified by` as in current practice rdfs:label is used in the meaning of P1 is identified by, to a very large amount.
 
 &nbsp;
 
-#### **D. Custom Multiple Isa declarations**
+#### **D. Implementing Value Intervals**
+
+The following are property pairs needed to simulate interval-valued primitive values foreseen by the CRM:
+
+> D1. addition of 2 additional subPropertiesOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive` for the exact time specification of `E61 Time Primitive`.
+
+> D2. addition of 2 additional subPropertiesOf `E52 Time-Span. P82 at some time within: E61 Time Primitive` for the exact time specification of `E61 Time Primitive`.
+
+> D3. addition of 2 additional subPropertiesOf `E54 Dimension. P90 has value: E60 Number` for the upper and lower boundaries specification of `E60 Number`.
+
+&nbsp;
+
+#### **E. Custom Multiple Isa declarations**
 
 The following are declarations of frequently used multiple instatiations as classes with respective multiple IsA:
 
-> D1. addition of 1 additional subClass of `E41 Appellation` and `E33 Linguistic Object` for all Appellations being regarded
+> E1. addition of 1 additional subClass of `E41 Appellation` and `E33 Linguistic Object` for all Appellations being regarded
 specific to or characteristic for a language group and being directly described by a literal and not indirectly via a URI.
 
 &nbsp;
 
-#### **E. Translations and Scope notes**
 
-> E1. **Translations** Each RDF Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
+#### **F. Translations and Scope notes**
+
+> F1. **Translations** Each RDF Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
 
 - The English label of the `CurrentVersion` that this rdf is refferring to is *almost Equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for.
 E.g. In order to accept a translation for `E22 Human-Made Object` in CurrentVersion (7.1.1) we should have a tranlation for E22 that was created based on a CIDOC version that used the same name for E22. E22 class name changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7 so the only **valid** tranlsations would be these that were created since 6.2.7. Currently no such translation has been created so `E22 Human-Made Object` in CurrentVersion (7.1.1) does not define any translation in current RDF File.
@@ -84,7 +93,7 @@ Currently in this version we follow the option to qualify translations as valid 
 
 &nbsp;
 
-> E2. **Scope notes** are defined as rdfs:comment including just the text of the official CIDOC-CRM version in English language. Since scope note is not just simple text but includes formatting, simple removal of formatting does not always produce a readable format. Thus we followed the following simple conventions for the transformation of CIDOC-CRM scope note text in a readable rdfs:comment:
+> F2. **Scope notes** are defined as rdfs:comment including just the text of the official CIDOC-CRM version in English language. Since scope note is not just simple text but includes formatting, simple removal of formatting does not always produce a readable format. Thus we followed the following simple conventions for the transformation of CIDOC-CRM scope note text in a readable rdfs:comment:
 
 - Each Paragrah defines a new line
 - Each element in an unordered list defines a new line
@@ -94,7 +103,7 @@ Currently in this version we follow the option to qualify translations as valid 
 
 &nbsp;
 
-> E3. **Scope notes of Inverse Properties**. Scope notes for the inverse/backwards direction of Properties is not defined as it is covered by the definition of the direct/forward direction definition. Whenever the direct/forward property direction of `Pxyz` is not defined due to **B1**, then its scope note, is used as the scope note of the inverse/backwards property `Pxyzi` and prefixed with `Scope note for 'Pxyz':`.
+> F3. **Scope notes of Inverse Properties**. Scope notes for the inverse/backwards direction of Properties is not defined as it is covered by the definition of the direct/forward direction definition. Whenever the direct/forward property direction of `Pxyz` is not defined due to **B1**, then its scope note, is used as the scope note of the inverse/backwards property `Pxyzi` and prefixed with `Scope note for 'Pxyz':`.
 
 &nbsp;
 
@@ -158,7 +167,7 @@ Following the aforementioned policies resulted in the following RDF generation d
 
 &nbsp;
 
-- Added the following 6 RDF property definitions due to **C1, C2 and C3**
+- Added the following 6 RDF property definitions due to **D1, D2 and D3**
 
   - `E52 Time-Span. P81a end of the begin: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
   - `E52 Time-Span. P81b begin of the end: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
@@ -169,6 +178,6 @@ Following the aforementioned policies resulted in the following RDF generation d
 
 &nbsp;
 
-- Added the following 1 RDF class definition due to **D1**
+- Added the following 1 RDF class definition due to **E1**
 
   - `E41_E33_Linguistic_Appellation` subClass of `E41_Appellation` and `E33_Linguistic_Object`
