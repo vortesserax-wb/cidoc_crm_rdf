@@ -51,32 +51,32 @@ Encoding Rules:
 
 -->
   <!--
-## RDF Generation Policies
+## RDFS Generation Policies
 
 ### Sources
 
-Policies followed for the RDF implementation of CIDOC v.7.1.1 were created w.r.t.:
+Policies followed for the RDFS implementation of CIDOC v.7.1.1 were created w.r.t.:
 
 - [Implementing the CIDOC Conceptual Reference Model in RDF](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf)
 - CIDOC-CRM SIG feedback and the general guidelines:
   - Each property is declared twice: forward and backwards
-  - All Primitive Values become rdf literal
+  - All Primitive Values become rdfs literal
   - All IsA declarations from/to and between Primitive values are ignored
 
 ### Policies
 
 &nbsp;
 
-#### **A. CIDOC Classes implementation in RDF**
+#### **A. CIDOC Classes implementation in RDFS**
 
-CIDOC-CRM model defines some classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of `E59 Primitive` and in RDF they are interpreted as Literals. There are some classes that are not only subclasses of `E59 Primitive` and this creates a question mark on whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.
-In this DRAFT version we followed the following policies regarding CIDOC Classes implementation in RDF:
+CIDOC-CRM model defines some classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of `E59 Primitive` and in RDFS they are interpreted as Literals. There are some classes that are not only subclasses of `E59 Primitive` and this creates a question mark on whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.
+In this DRAFT version we followed the following policies regarding CIDOC Classes implementation in RDFS:
 
 &nbsp;
 
 > A1. CIDOC Classes that are subClasses of `E59 Primitive` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class.
 
-As a result, the following 6 CIDOC classes were not defined in RDF/RDFs:
+As a result, the following 6 CIDOC classes were not defined in RDFS:
 
 - `E59 Primitive`
 - `E60 Number`
@@ -89,10 +89,10 @@ As a result, the following 6 CIDOC classes were not defined in RDF/RDFs:
 
 &nbsp;
 
-#### **B. CIDOC Properties implementation in RDF**
+#### **B. CIDOC Properties implementation in RDFS**
 
-The decisions in policy A affect the implementation of Cidoc Properties in RDF. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason.
-In this DRAFT version we followed the following policies regarding CIDOC Properties implementation in RDF:
+The decisions in policy A affect the implementation of Cidoc Properties in RDFS. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason.
+In this DRAFT version we followed the following policies regarding CIDOC Properties implementation in RDFS:
 
 > B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1).
 
@@ -119,7 +119,7 @@ Additionaly, the following 11 inverse/backwards CIDOC Property directions were n
 
 &nbsp;
 
-> B2. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property should be used for **both** directions and **no inverse/backwards property** needs to be defined.
+> B2. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property should be used for **both** directions and **no inverse/backwards property** needs to be defined.**
 
 As a result, did not implement a seperate backwards/inverse direction for the following 5 CIDOC Properties:
 
@@ -137,11 +137,13 @@ Additionaly, all aforementioned redundant backwards/inverse CIDOC Property direc
 
 &nbsp;
 
-#### **C. RDF extensions**
+#### **C. Labels and appellations**
 
-The following RDF-RDFs extensions were implemented. Note that according to RDFs specifications domain/range of a property are not necessarily subClass or Equal to the domain/range of its superporperties.
+Since, in current practice, the property `rdfs:label` is used to denote appellations, the following `subPropertyOf` relation was defined:
 
-- `rdfs:Resource. rdfs:label: rdfs:Literal` subPropertyOf `E1 CRM Entity. P1 is identified by: E41 Appellation` as in current practice rdfs:label is used in the meaning of P1 is identified by, to a very large amount.
+- `rdfs:Resource. rdfs:label: rdfs:Literal` subPropertyOf `E1 CRM Entity. P1 is identified by: E41 Appellation`
+
+Note that according to the RDF Schema 1.1 specification, the domain (or range) of a property is not necessarily 'subClassOf' or 'equal' to the domain (or range) of its superproperties. With this addition, one can either directly use `rdfs:label` for providing an identifier/appellation for an instance of `E1 CRM Entity`, or use `P1 is identified by` and an intermediate node (i.e. an instance of `E41_Appellation`) for providing additional information about the appellation.  
 
 &nbsp;
 
@@ -176,7 +178,7 @@ As a result, created the following property definitions:
 
 &nbsp;
 
-#### **E. Custom Multiple Isa declarations**
+#### **E. Custom Multiple ISA declarations**
 
 The following are declarations of frequently used multiple instatiations as classes with respective multiple IsA:
 
@@ -193,10 +195,10 @@ As a result, created the following class definition
 
 #### **F. Translations and Scope notes**
 
-> F1. **Translations** Each RDF Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
+> F1. **Translations** Each RDFS Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
 
-- The English label of the `CurrentVersion` that this rdf is refferring to is *almost Equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for.
-E.g. In order to accept a translation for `E22 Human-Made Object` in CurrentVersion (7.1.1) we should have a tranlation for E22 that was created based on a CIDOC version that used the same name for E22. E22 class name changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7 so the only **valid** tranlsations would be these that were created since 6.2.7. Currently no such translation has been created so `E22 Human-Made Object` in CurrentVersion (7.1.1) does not define any translation in current RDF File.
+- The English label of the `CurrentVersion` that current rdfs file is refferring to is *almost Equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for.
+E.g. In order to accept a translation for `E22 Human-Made Object` in CurrentVersion (7.1.1) we should have a tranlation for E22 that was created based on a CIDOC version that used the same name for E22. E22 class name changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7 so the only **valid** tranlsations would be these that were created since 6.2.7. Currently no such translation has been created so `E22 Human-Made Object` in CurrentVersion (7.1.1) does not define any translation in current RDFS File.
 
 - Another option is to qualify translations as **valid** based on the scope note comparison of `CurrentVersion` and `TranslationVersion`. Since scope note includes formatting info the comparison should ingnore formatting changes.
 
