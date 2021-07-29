@@ -9,7 +9,7 @@ Note that this is NOT a definition of the CIDOC CRM, but an encoding
 derived from the authoritative release of the CIDOC CRM v7.1.1 May 2021 on 
 http://cidoc-crm.org/Version/version-7.1.1
 
-Created by FORTH-ICS Wednesday July 14, 2021
+Created by FORTH-ICS Thursday July 29, 2021
 
 
 Encoding Rules:
@@ -69,8 +69,8 @@ Policies followed for the RDFS implementation of CIDOC v.7.1.1 were created w.r.
 
 #### **A. CIDOC Classes implementation in RDFS**
 
-CIDOC-CRM model defines some classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of `E59 Primitive` and in RDFS they are interpreted as Literals. There are some classes that are not only subclasses of `E59 Primitive` and this creates a question mark on whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.
-In this DRAFT version we followed the following policies regarding CIDOC Classes implementation in RDFS:
+CIDOC-CRM model defines classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of `E59 Primitive` and in RDFS they are interpreted as Literals. There are some classes that are not only subclasses of `E59 Primitive` and this creates a question mark on whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.
+In this version we followed the following policy regarding CIDOC Classes implementation in RDFS:
 
 &nbsp;
 
@@ -85,14 +85,24 @@ As a result, the following 6 CIDOC classes were not defined in RDFS:
 - `E94 Space Primitive`
 - `E95 Spacetime Primitive`
 
-   Did not also define the isA relationships that these classes participate in while their references in rdfs:range of Properties were replaced by rdfs:Literal
+Additionally, the following isA relationships were not defined in RDFS:
+
+- `E59 Primitive` subClassOf `E1 CRM Entity`
+- `E60 Number` subClassOf `E59 Primitive`
+- `E61 Time Primitive` subClassOf `E59 Primitive`, `E41 Appellation`
+- `E62 String` subClassOf `E59 Primitive`
+- `E94 Space Primitive` subClassOf `E59 Primitive`, `E41 Appellation`
+- `E95 Spacetime Primitive` subClassOf `E59 Primitive`, `E41 Appellation`
 
 &nbsp;
 
 #### **B. CIDOC Properties implementation in RDFS**
 
-The decisions in policy A affect the implementation of Cidoc Properties in RDFS. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason.
-In this DRAFT version we followed the following policies regarding CIDOC Properties implementation in RDFS:
+The decisions in policy A affect the implementation of Cidoc Properties in RDFS. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason. Further, the inherited properties of these classes are similarly affected. In Cidoc Model a definition like `class1 subClassOf class2` specifies that `class1` can also define all properties with domain `class2` (similarly for inverse properties). If class `class1` is implemented as rdfs:Literal then it cannot also define the properties of `class2`.
+
+Another aspect that should be considered during the implementation of properties in RDFs is whether a distinct inverse property definition should be implemented.
+
+In this version we followed the following policies regarding CIDOC Properties implementation in RDFS:
 
 > B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1).
 
@@ -103,7 +113,7 @@ As a result, the following 2 direct/forward CIDOC Property directions were not d
 - `E95 Spacetime Primitive. P169 defines spacetime volume: E92 Spacetime Volume`
 - `E61 Time Primitive. P170 defines time: E52 Time-Span`
 
-Additionaly, the following 11 inverse/backwards CIDOC Property directions were not defined:
+Additionally, the following 11 inverse/backwards CIDOC Property directions were not defined:
 
 - `E1 CRM Entity. P3 has note: E62 String`
 - `E19 Physical Object. P57 has number of parts: E60 Number`
@@ -119,9 +129,39 @@ Additionaly, the following 11 inverse/backwards CIDOC Property directions were n
 
 &nbsp;
 
-> B2. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property should be used for **both** directions and **no inverse/backwards property** needs to be defined.**
+Additionally, the following **inherited** properties cannot be expressed for all classes included in Policy A. (i.e. in this version `E59 Primitive`, `E60 Number`, `E61 Time Primitive`, `E62 String`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
 
-As a result, did not implement a seperate backwards/inverse direction for the following 5 CIDOC Properties:
+- Properties inherited from `E1 CRM Entity`
+  - `P1 is identified by (identifies): E41 Appellation`
+  - `P2 has type (is type of): E55 Type`
+  - `P3 has note: E62 String`
+  - `P48 has preferred identifier (is preferred identifier of): E42 Identifier`
+  - `P137 exemplifies (is exemplified by): E55 Type`
+
+Additionally, the following **inherited** properties cannot be expressed for classes included in Policy A that are also subClassOf another Cidoc class.  (i.e. in this version `E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive` that are all subClassOf `E41 Appellation`)
+
+- Properties inherited from `E70 Thing`
+  - `P43 has dimension (is dimension of): E54 Dimension`
+  - `P101 had as general use (was use of): E55 Type`
+  - `P130 shows features of (features are also found on): E70 Thing`
+- Properties inherited from `E71 Human-Made Thing`
+  - `P102 has title (is title of): E35 Title`
+  - `P103 was intended for (was intention of): E55 Type`
+- Properties inherited from `E72 Legal Object`
+  - `P104 is subject to (applies to): E30 Right`
+  - `P105 right held by (has right on): E39 Actor`
+- Properties inherited from `E90 Symbolic Object`
+  - `P106 is composed of (forms part of): E90 Symbolic Object`
+  - `P190 has symbolic content: E62 String`
+- Properties inherited from `E41 Appellation`
+  - `P139 has alternative form: E41 Appellation`
+  - `P139 has alternative form: E41 Appellation`
+
+&nbsp;
+
+> B2. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property should be used for **both** directions and **no inverse/backwards property** needs to be defined.
+
+As a result, did not implement a separate backwards/inverse direction for the following 5 CIDOC Properties:
 
 - `E53 Place. P121 overlaps with: E53 Place`
 - `E53 Place. P122 borders with: E53 Place`
@@ -131,7 +171,7 @@ As a result, did not implement a seperate backwards/inverse direction for the fo
 
 &nbsp;
 
-Additionaly, all aforementioned redundant backwards/inverse CIDOC Property direction references, were replaced by the respective direct/forward CIDOC Property direction.
+Additionally, all aforementioned redundant backwards/inverse CIDOC Property direction references, were replaced by the respective direct/forward CIDOC Property direction.
 
 - The hierarchical link of  `P10i` subPropertyOf `P132i` was replaced with `P10i` subPropertyOf `P132`.
 
@@ -180,9 +220,9 @@ As a result, created the following property definitions:
 
 #### **E. Custom Multiple ISA declarations**
 
-The following are declarations of frequently used multiple instatiations as classes with respective multiple IsA:
+The following are declarations of frequently used multiple instantiations as classes with respective multiple IsA:
 
-> E1. addition of 1 additional subClass of `E41 Appellation` and `E33 Linguistic Object` for all Appellations being regarded
+> E1. addition of 1 additional subClassOf `E41 Appellation` and `E33 Linguistic Object` for all Appellations being regarded
 specific to or characteristic for a language group and being directly described by a literal and not indirectly via a URI.
 
 &nbsp;
@@ -197,18 +237,18 @@ As a result, created the following class definition
 
 > F1. **Translations** Each RDFS Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
 
-- The English label of the `CurrentVersion` that current rdfs file is refferring to is *almost Equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for.
-E.g. In order to accept a translation for `E22 Human-Made Object` in CurrentVersion (7.1.1) we should have a tranlation for E22 that was created based on a CIDOC version that used the same name for E22. E22 class name changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7 so the only **valid** tranlsations would be these that were created since 6.2.7. Currently no such translation has been created so `E22 Human-Made Object` in CurrentVersion (7.1.1) does not define any translation in current RDFS File.
+- The English label of the `CurrentVersion` that current rdfs file is referring to is *almost Equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for.
+E.g. In order to accept a translation for `E22 Human-Made Object` in CurrentVersion (7.1.1) we should have a translation for E22 that was created based on a CIDOC version that used the same name for E22. E22 class name changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7 so the only **valid** translations would be these that were created since 6.2.7. Currently no such translation has been created so `E22 Human-Made Object` in CurrentVersion (7.1.1) does not define any translation in current RDFS File.
 
-- Another option is to qualify translations as **valid** based on the scope note comparison of `CurrentVersion` and `TranslationVersion`. Since scope note includes formatting info the comparison should ingnore formatting changes.
+- Another option is to qualify translations as **valid** based on the scope note comparison of `CurrentVersion` and `TranslationVersion`. Since scope note includes formatting info the comparison should ignore formatting changes.
 
-Currently in this version we follow the option to qualify translations as valid based on the comparison of their name in the relevant cidoc versions.
+Currently in this version we follow the option to qualify translations as valid based on the comparison of their name in the relevant CIDOC versions.
 
 &nbsp;
 
 > F2. **Scope notes** are defined as rdfs:comment including just the text of the official CIDOC-CRM version in English language. Since scope note is not just simple text but includes formatting, simple removal of formatting does not always produce a readable format. Thus we followed the following simple conventions for the transformation of CIDOC-CRM scope note text in a readable rdfs:comment:
 
-- Each Paragrah defines a new line
+- Each Paragraph defines a new line
 - Each element in an unordered list defines a new line
 - Each element in an ordered list defines a new line prefixed with `'{order}. '`
 - Each superscript text is separated from its base with `'-'`
