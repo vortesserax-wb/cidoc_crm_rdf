@@ -1,6 +1,6 @@
 # CIDOC-CRM implementation in RDF Schema 1.1 (RDFS)
 
-This project branch will keep track of draft CIDOC-CRM v7.1.1 RDFS implementation
+This project branch will keep track of the draft RDFS implementation of the CIDOC-CRM v7.1.1 
 
 ## Statistics
 
@@ -8,11 +8,11 @@ Draft release date: 14/7/2021
 
 Version: 7.1.1 CIDOC Classes: 81 CIDOC Properties: 160 (Symmetric 4 / Transitive 13 / Reflexive 2)
 
-- CIDOC Classes definitions in RDFS: 75 (6 interpreted as rdfs:Literal)
+- CIDOC Classes definitions in RDFS: 75 (another 6 interpreted as rdfs:Literal)
 - CIDOC Properties forward definitions in RDFS: 158
 - CIDOC Properties backwards definitions in RDFS: 144
 - RDFS Implementation of Value Interval Properties: 6
-- RDFS Custom Multiple ISA declaration Classes: 1
+- RDFS Multiple ISA custom declaration Classes: 1
 
 ## RDFS Generation Policies
 
@@ -23,7 +23,7 @@ Policies followed for the RDFS implementation of CIDOC v.7.1.1 were created w.r.
 - [Implementing the CIDOC Conceptual Reference Model in RDF](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf)
 - CIDOC-CRM SIG feedback and the general guidelines:
   - Each property is declared twice: forward and backwards
-  - All Primitive Values become rdfs literal
+  - All Primitive Values become rdfs Literal
   - All IsA declarations from/to and between Primitive values are ignored
 
 ### Policies
@@ -32,8 +32,8 @@ Policies followed for the RDFS implementation of CIDOC v.7.1.1 were created w.r.
 
 #### **A. CIDOC Classes implementation in RDFS**
 
-CIDOC-CRM model defines classes, that in Triple stores are typically implemented as primitive values. Such Model Classes are all subclasses of `E59 Primitive` and in RDFS they are interpreted as Literals. There are some classes that are not only subclasses of `E59 Primitive` and this creates a question mark on whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.
-In this version we followed the following policy regarding CIDOC Classes implementation in RDFS:
+The CIDOC-CRM model defines classes, that in Triple Stores are typically implemented as primitive values. These classes are all subclasses of `E59 Primitive` and in RDFS they are interpreted as Literal. There are some classes in the CIDOC-CRM model that are both subclasses of `E59 Primitive` and E41 Appellation. The question whether they should be implemented as rdfs:Class or still be interpreted as rdfs:Literal was decided by CRM-SIG in "Issue 394: Solution for Dualism of E41 Appellation and rdfs:label" in 28-11-2018.
+In this version we have followed the following policy regarding CIDOC Classes implementation in RDFS:
 
 &nbsp;
 
@@ -61,7 +61,7 @@ Additionally, the following isA relationships were not defined in RDFS:
 
 #### **B. CIDOC Properties implementation in RDFS**
 
-The decisions in policy A affect the implementation of Cidoc Properties in RDFS. A property would never define an rdfs:Literal as rdfs:domain, while the backwards direction of a Property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason. Further, the inherited properties of these classes are similarly affected. In Cidoc Model a definition like `class1 subClassOf class2` specifies that `class1` can also define all properties with domain `class2` (similarly for inverse properties). If class `class1` is implemented as rdfs:Literal then it cannot also define the properties of `class2`.
+The decisions in policy A affect the implementation of Cidoc Properties in RDFS. A property cannot define an rdfs:Literal as rdfs:domain, while the backwards direction of a property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason. Further, the inherited properties of these classes are similarly affected. In Cidoc Model a definition like `class1 subClassOf class2` specifies that `class1` can also define all properties with domain `class2` (similarly for inverse properties). If class `class1` is implemented as rdfs:Literal then it cannot also define the properties of `class2`.
 
 Another aspect that should be considered during the implementation of properties in RDFs is whether a distinct inverse property definition should be implemented.
 
