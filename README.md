@@ -62,7 +62,8 @@ Additionally, the following isA relationships were not defined in RDFS:
 
 #### **B. CIDOC Properties implementation in RDFS**
 
-The decisions in policy A affect the implementation of CIDOC Properties in RDFS. A property cannot define an rdfs:Literal as rdfs:domain, and the backwards direction of a property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason. 
+The decisions in policy A affect the implementation of CIDOC Properties in RDFS. A property cannot define an rdfs:Literal as rdfs:domain, and the backwards direction of a property with an rdfs:Literal as rdfs:range cannot be created for the exact same reason.
+
 Further, the property ranges defined as rdfs:Literal in this implementation do not inherit the properties of the superclasses defined in the CIDOC Model. A separate guideline will describe how to instantiate such properties if at all needed.
 
 Another aspect considered for the implementation of properties in RDFs is whether a distinct inverse property definition should be provided.
@@ -186,7 +187,7 @@ Consequently, we have created the following property definitions:
 
 &nbsp;
 
-#### **E. Custom Multiple ISA declarations**
+#### **E. Multiple ISA custom declaration Classes**
 
 The following are declarations of frequently used multiple instantiations as classes with respective multiple IsA (so far only one):
 
@@ -205,7 +206,7 @@ As a result, created the following class definition
 
 > F1. **Translations** Each RDFS Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
 
-- The English label of the `CurrentVersion` that current the RDFS file is referring to is *almost Equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for.
+- The English label of the `CurrentVersion` that the current RDFS file is referring to is *almost Equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for.
 E.g. In order to accept a translation for `E22 Human-Made Object` in CurrentVersion (7.1.1) we should have a translation for E22 that was created based on a CIDOC version that used the same name for E22. The class name of E22 was changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7. So the only **valid** translations would be these that were created based on version 6.2.7 or later. Currently no such translation has been created, so `E22 Human-Made Object` in CurrentVersion (7.1.1) does not define any translation in current RDFS File.
 
 - Another option is to qualify translations as **valid** based on the scope note comparison of `CurrentVersion` and `TranslationVersion`. Since scope notes include formatting information, the comparison should ignore formatting changes.
