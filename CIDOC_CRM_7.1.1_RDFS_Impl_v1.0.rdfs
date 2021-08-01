@@ -7,7 +7,9 @@ This is the implementation approved by CRM-SIG in the meeting {{pending for appr
 as the current RDFS version for the CIDOC CRM namespace.
 Note that this is NOT a definition of the CIDOC CRM, but a CIDOC CRM compatible implementation
 of an RDF Schema derived from the authoritative release of the CIDOC CRM v7.1.1 May 2021 on 
-http://cidoc-crm.org/Version/version-7.1.1 by an automated algorithm.
+http://cidoc-crm.org/Version/version-7.1.1 by an automated algorithm. It is intended for an
+assumed majority of uses. Depending on the application, users may create adequate extensions 
+compatible with the logical definitions of the CIDOC CRM.
 
 Created by FORTH-ICS Sunday August 01, 2021
 
