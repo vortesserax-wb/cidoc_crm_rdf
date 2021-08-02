@@ -23,7 +23,7 @@ Policies followed for the RDFS implementation of CIDOC v.7.1.1 were created w.r.
 - [Implementing the CIDOC Conceptual Reference Model in RDF](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf)
 - CIDOC-CRM SIG feedback and the general guidelines:
   - Each property is declared twice: forward and backwards
-  - All Primitive Values become rdfs Literal
+  - All Primitive Values become rdfs:Literal
   - All IsA declarations from/to and between Primitive values are ignored
 
 ### Policies
@@ -66,7 +66,7 @@ The decisions in policy A affect the implementation of CIDOC Properties in RDFS.
 
 Further, the property ranges defined as rdfs:Literal in this implementation do not inherit the properties of the superclasses defined in the CIDOC Model. A separate guideline will describe how to instantiate such properties if at all needed.
 
-Another aspect considered for the implementation of properties in RDFs is whether a distinct inverse property definition should be provided.
+Another aspect considered for the implementation of properties in RDFS is whether a distinct inverse property definition should be provided.
 
 In this version we followed the following policies regarding CIDOC Properties implementation in RDFS:
 
@@ -151,7 +151,7 @@ Since, in the current practice, the property `rdfs:label` is widely used to deno
 
 - `rdfs:Resource. rdfs:label: rdfs:Literal` subPropertyOf `E1 CRM Entity. P1 is identified by: E41 Appellation`
 
-Note that according to the RDF Schema 1.1 specification, the domain (or range) of a property needs not necessarily be 'subClassOf' or 'equal' to the domain (or range) of its superproperties. With thisthe above definition, one can either directly use `rdfs:label` for providing a non-URI identifier/appellation for an instance of `E1 CRM Entity`, or use `P1 is identified by` for associating an additional URI-identifier with an instance of `E1 CRM Entity`, or use `P1 is identified by` and create an intermediate node (i.e. a URI-identifier for instance of `E41_Appellation`) for providing more detailed information about this appellation. A separate guideline will describe how to instantiate these cases if at all needed.
+Note that according to the RDF Schema 1.1 specification, the domain (or range) of a property needs not necessarily be 'subClassOf' or 'equal' to the domain (or range) of its superproperties. With this definition, one can either directly use `rdfs:label` for providing a non-URI identifier/appellation for an instance of `E1 CRM Entity`, or use `P1 is identified by` for associating an additional URI-identifier with an instance of `E1 CRM Entity`, or use `P1 is identified by` and create an intermediate node (i.e. a URI-identifier for instance of `E41_Appellation`) for providing more detailed information about this appellation. A separate guideline will describe how to instantiate these cases if at all needed.
  
 
 &nbsp;
@@ -160,16 +160,16 @@ Note that according to the RDF Schema 1.1 specification, the domain (or range) o
 
 The following are property pairs needed to simulate the interval-valued primitive values foreseen by the CRM:
 
-> D1. addition of 2 additional subPropertiesOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive` for the exact time specification of `E61 Time Primitive`.
+> D1. addition of two new properties, defined as subproperties of `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`, for the 'lower' boundaries specification of `E61 Time Primitive`.
 
-As a result, created the following property definitions:
+As a result, we have created the following property definitions:
 
 - `E52 Time-Span. P81a end of the begin: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
 - `E52 Time-Span. P81b begin of the end: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
 
 &nbsp;
 
-> D2. addition of 2 additional subPropertiesOf `E52 Time-Span. P82 at some time within: E61 Time Primitive` for the exact time specification of `E61 Time Primitive`.
+> D2. addition of two new properties, defined as subproperties of `E52 Time-Span. P82 at some time within: E61 Time Primitive`, for the 'upper' boundaries specification of `E61 Time Primitive`.
 
 Consequently, we have created the following property definitions:
 
@@ -178,7 +178,7 @@ Consequently, we have created the following property definitions:
 
 &nbsp;
 
-> D3. addition of 2 additional subPropertiesOf `E54 Dimension. P90 has value: E60 Number` for the upper and lower boundaries specification of `E60 Number`.
+> D3. addition of two new properties, defined as subproperties of `E54 Dimension. P90 has value: E60 Number`, for the upper and lower boundaries specification of `E60 Number`.
 
 Consequently, we have created the following property definitions:
 
@@ -191,12 +191,12 @@ Consequently, we have created the following property definitions:
 
 The following are declarations of frequently used multiple instantiations as classes with respective multiple IsA (so far only one):
 
-> E1. addition of 1 additional subClassOf `E41 Appellation` and `E33 Linguistic Object` for all Appellations being regarded
+> E1. addition of a new class, defined as subClassOf `E41 Appellation` and `E33 Linguistic Object`, for all Appellations being regarded
 specific to or characteristic for a language group and being directly described by a literal and not indirectly via a URI.
 
 &nbsp;
 
-As a result, created the following class definition
+As a result, we have created the following class definition:
 
 - `E41_E33_Linguistic_Appellation` subClass of `E41_Appellation` and `E33_Linguistic_Object`
 
@@ -215,7 +215,7 @@ Currently in this version we follow the option to qualify translations as valid 
 
 &nbsp;
 
-> F2. **Scope notes** are defined as rdfs:comment and include only the text of the official CIDOC-CRM version in English language. Since scope notes are not just simple texts but include formatting data, a simple removal of the formatting data does not always produce a readable format. Therefore we followed the following simple conventions for the transformation of CIDOC-CRM scope note text into a readable rdfs:comment:
+> F2. **Scope notes** are defined as rdfs:comment and include only the text of the official CIDOC-CRM version in English language. Since scope notes are not just simple texts but include formatting data, a simple removal of the formatting data does not always produce a readable format. Therefore we followed the below simple conventions for the transformation of CIDOC-CRM scope note text into a readable rdfs:comment:
 
 - Each Paragraph defines a new line
 - Each element in an unordered list defines a new line
