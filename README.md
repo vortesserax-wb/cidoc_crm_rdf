@@ -22,7 +22,7 @@ Policies followed for the RDFS implementation of CIDOC v.7.1.1 were created w.r.
 
 - [Implementing the CIDOC Conceptual Reference Model in RDF](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf)
 - CIDOC-CRM SIG feedback and the general guidelines:
-  - Each property is declared twice: forward and backwards
+  - Each property is declared twice, forward and backwards, unless no inverse name is defined in parentheses, or domain or range is interpreted as literal
   - All Primitive Values become rdfs:Literal
   - All IsA declarations from/to and between Primitive values are ignored
 
