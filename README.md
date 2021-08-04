@@ -192,7 +192,7 @@ Consequently, we have created the following property definitions:
 The following are declarations of frequently used multiple instantiations as classes with respective multiple IsA (so far only one):
 
 > E1. addition of a new class, defined as subClassOf `E41 Appellation` and `E33 Linguistic Object`, for all Appellations being regarded
-specific to or characteristic for a language group and being directly described by a literal and not indirectly via a URI.
+specific to or characteristic for a language group and being described indirectly via a URI.
 
 &nbsp;
 
