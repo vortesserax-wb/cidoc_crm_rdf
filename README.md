@@ -6,7 +6,7 @@ This project branch will keep track of the draft RDFS implementation of the CIDO
 
 Draft release date: 14/7/2021
 
-Version: 7.1.1 CIDOC Classes: 81 CIDOC Properties: 160 (Symmetric 4 / Transitive 13 / Reflexive 2)
+Version: 7.1.1 CIDOC Classes: 81 CIDOC Properties: 160
 
 - CIDOC Classes definitions in RDFS: 75 (another 6 interpreted as rdfs:Literal)
 - CIDOC Properties forward definitions in RDFS: 158
@@ -104,102 +104,6 @@ a) The following **direct forward direction** CIDOC Properties **cannot** be exp
 b) The following **direct backwards direction** CIDOC Properties **cannot** be expressed and are **not defined** in RDFS:
 
 - `E94 Space Primitive. P168i defines place (place is defined by): E53 Place`
-
-&nbsp;
-
-c) The following **inherited forward direction** CIDOC properties, **cannot be used** for instances of classes specified by Policy A as they are interpreted as rdfs:Literal.
-
-- Forward direction properties inherited from `E1 CRM Entity` **cannot be used** for instances of classes specified by Policy A.
-  - `P1 is identified by (identifies): E41 Appellation`
-  - `P2 has type (is type of): E55 Type`
-  - `P3 has note: E62 String`
-  - `P48 has preferred identifier (is preferred identifier of): E42 Identifier`
-  - `P137 exemplifies (is exemplified by): E55 Type`
-
-&nbsp;
-
-- Forward direction properties inherited from `E41 Appellation` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P139 has alternative form: E41 Appellation`
-  
-&nbsp;
-
-- Forward direction properties inherited from `E70 Thing` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P43 has dimension (is dimension of): E54 Dimension`
-  - `P101 had as general use (was use of): E55 Type`
-  - `P130 shows features of (features are also found on): E70 Thing`
-
-&nbsp;
-
-- Forward direction properties inherited from `E71 Human-Made Thing` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P102 has title (is title of): E35 Title`
-  - `P103 was intended for (was intention of): E55 Type`
-
-&nbsp;
-
-- Forward direction properties inherited from `E72 Legal Object` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P104 is subject to (applies to): E30 Right`
-  - `P105 right held by (has right on): E39 Actor`
-
-&nbsp;
-
-- Forward direction properties inherited from `E90 Symbolic Object` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P106 is composed of (forms part of): E90 Symbolic Object`
-  - `P190 has symbolic content: E62 String`
-
-&nbsp;
-
-d) The following **inherited backwards direction** CIDOC properties, **cannot be used** for instances of classes specified by Policy A as they are interpreted as rdfs:Literal. 
-
-- Backwards direction properties inherited from `E1 CRM Entity` **cannot be used** for instances of classes specified by Policy A.
-  - `P15i influenced (was influenced by): E7 Activity`
-  - `P17i motivated (was motivated by): E7 Activity`
-  - `P41i was classified by (classified): E17 Type Assignment`
-  - `P62i is depicted by (depicts): E24 Physical Human-Made Thing`
-  - `P67i is referred to by (refers to): E89 Propositional Object`
-  - `P70i is documented in (documents): E31 Document`
-  - `P71i is listed in (lists): E32 Authority Document`
-  - `P129i is subject of (is about): E89 Propositional Object`
-  - `P136i supported type creation (was based on): E83 Type Creation`
-  - `P138i has representation (represents): E36 Visual Item`
-  - `P140i was attributed by (assigned attribute to): E13 Attribute Assignment`
-  - `P141i was assigned by (assigned): E13 Attribute Assignment`
-  
-&nbsp;
-
-- Backwards direction properties inherited from `E28 Conceptual Object` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P94i was created by (has created): E65 Creation`
-  
-&nbsp;
-
-- Backwards direction properties inherited from `E41 Appellation` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P1i identifies (is identified by): E1 CRM Entity`
-  - `P76i provides access to (has contact point): E39 Actor`
-  
-&nbsp;
-
-- Backwards direction properties inherited from `E70 Thing` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P16i was used for (used specific object): E7 Activity`
-  - `P130i features are also found on (shows features of): E70 Thing`
-  
-&nbsp;
-
-- Backwards direction properties inherited from `E71 Human-Made Thing` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P19i was made for (was intended use of): E7 Activity`
-  
-&nbsp;
-
-- Backwards direction properties inherited from `E77 Persistent Item` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P12i was present at (occurred in the presence of): E5 Event`
-  - `P92i was brought into existence by (brought into existence): E63 Beginning of Existence`
-  - `P93i was taken out of existence by (took out of existence): E64 End of Existence`
-  
-&nbsp;
-
-- Backwards direction properties inherited from `E90 Symbolic Object` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
-  - `P106i forms part of (is composed of): E90 Symbolic Object`
-  - `P128i is carried by (carries): E18 Physical Thing`
-  - `P142i was used in (used constituent): E15 Identifier Assignment`
-  - `P165i is incorporated in (incorporates): E73 Information Object`
 
 &nbsp;
 
