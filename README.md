@@ -21,6 +21,7 @@ Version: 7.1.1 CIDOC Classes: 81 CIDOC Properties: 160 (Symmetric 4 / Transitive
 Policies followed for the RDFS implementation of CIDOC v.7.1.1 were created w.r.t.:
 
 - [Implementing the CIDOC Conceptual Reference Model in RDF](http://www.cidoc-crm.org/Resources/implementing-the-cidoc-conceptual-reference-model-in-rdf)
+- [How to implement CRM Time in RDF](http://old.cidoc-crm.org/docs/How_to%20implement%20CRM_Time_in%20RDF.pdf)
 - CIDOC-CRM SIG feedback and the general guidelines:
   - Each property is declared twice, forward and backwards, unless no inverse name is defined in parentheses, or domain or range is interpreted as literal
   - All Primitive Values become rdfs:Literal
@@ -40,7 +41,7 @@ In this version we have followed the following policy regarding CIDOC Classes im
 
 > A1. CIDOC Classes that are subClasses of `E59 Primitive` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class.
 
-As a result, the following 6 CIDOC classes were not defined in RDFS:
+As a result, the following CIDOC classes were not defined in RDFS:
 
 - `E59 Primitive`
 - `E60 Number`
@@ -70,66 +71,141 @@ Another aspect considered for the implementation of properties in RDFS is whethe
 
 In this version we followed the following policies regarding CIDOC Properties implementation in RDFS:
 
-> B1. CIDOC Property backwards/inverse direction is **not** defined if range is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property forward/direct direction is **not** defined when domain is interpreted as rdfs:Literal (A.1).
+> B1. CIDOC Property backwards/inverse direction is **not** defined, whenever no inverse name for the property has been specified in parentheses in the official CIDOC documentation and property domain is not equal with property range.
 
 &nbsp;
 
-As a result, 
-
-a) The following 2 direct/forward CIDOC Property directions were not defined:
-
-- `E95 Spacetime Primitive. P169 defines spacetime volume: E92 Spacetime Volume`
-- `E61 Time Primitive. P170 defines time: E52 Time-Span`
-
-b) The following 11 inverse/backwards CIDOC Property directions were not defined:
+As a result, the following properties do not define an inverse direction.
 
 - `E1 CRM Entity. P3 has note: E62 String`
 - `E19 Physical Object. P57 has number of parts: E60 Number`
 - `E52 Time-Span. P79 beginning is qualified by: E62 String`
 - `E52 Time-Span. P80 end is qualified by: E62 String`
 - `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`
-- `E52 Time-Span. P82 at some time within: E61 Time Primitive`  
+- `E52 Time-Span. P82 at some time within: E61 Time Primitive`
 - `E54 Dimension. P90 has value: E60 Number`
-- `E53 Place. P168 place is defined by: E94 Space Primitive`
 - `E53 Place. P171 at some place within: E94 Space Primitive`
 - `E53 Place. P172 contains: E94 Space Primitive`
 - `E90 Symbolic Object. P190 has symbolic content: E62 String`
 
+> B2. CIDOC Property forward direction is **not** defined whenever property domain is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property backwards/inverse direction is **not** defined, whenever property range is interpreted as rdfs:Literal (A.1). Further, the instances of classes interpreted as rdfs:Literal, cannot express in RDFs their **inherited** properties that could be expressed according to CIDOC Model.
+
 &nbsp;
 
-c) The following **inherited** properties cannot be expressed for all classes included in Policy A. (i.e. in this version `E59 Primitive`, `E60 Number`, `E61 Time Primitive`, `E62 String`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+As a result,
 
-- Properties inherited from `E1 CRM Entity`
+a) The following **direct forward direction** CIDOC Properties **cannot** be expressed and are **not defined** in rdfs:
+
+- `E95 Spacetime Primitive. P169 defines spacetime volume (spacetime volume is defined by): E92 Spacetime Volume`
+- `E61 Time Primitive. P170 defines time (time is defined by): E52 Time-Span`
+
+&nbsp;
+
+b) The following **direct backwards direction** CIDOC Properties **cannot** be expressed and are **not defined** in rdfs:
+
+- `E94 Space Primitive. P168i defines place (place is defined by): E53 Place`
+
+&nbsp;
+
+c) The following **inherited forward direction** CIDOC properties, **cannot be used** for instances of classes specified by Policy A as they are interpreted as rdfs:Literal.
+
+- Forward direction properties inherited from `E1 CRM Entity` **cannot be used** for instances of classes specified by Policy A.
   - `P1 is identified by (identifies): E41 Appellation`
   - `P2 has type (is type of): E55 Type`
   - `P3 has note: E62 String`
   - `P48 has preferred identifier (is preferred identifier of): E42 Identifier`
   - `P137 exemplifies (is exemplified by): E55 Type`
 
-d) The following **inherited** properties cannot be expressed for classes included in Policy A that are also subClassOf another Cidoc class.  (i.e. in this version `E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive` that are all subClassOf `E41 Appellation`)
+&nbsp;
 
-- Properties inherited from `E70 Thing`
+- Forward direction properties inherited from `E41 Appellation` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P139 has alternative form: E41 Appellation`
+  
+&nbsp;
+
+- Forward direction properties inherited from `E70 Thing` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
   - `P43 has dimension (is dimension of): E54 Dimension`
   - `P101 had as general use (was use of): E55 Type`
   - `P130 shows features of (features are also found on): E70 Thing`
-- Properties inherited from `E71 Human-Made Thing`
-  - `P102 has title (is title of): E35 Title`
-  - `P103 was intended for (was intention of): E55 Type`
-- Properties inherited from `E72 Legal Object`
-  - `P104 is subject to (applies to): E30 Right`
-  - `P105 right held by (has right on): E39 Actor`
-- Properties inherited from `E90 Symbolic Object`
-  - `P106 is composed of (forms part of): E90 Symbolic Object`
-  - `P190 has symbolic content: E62 String`
-- Properties inherited from `E41 Appellation`
-  - `P139 has alternative form: E41 Appellation`
-  - `P139 has alternative form: E41 Appellation`
 
 &nbsp;
 
-> B2. Whenever no backwards/inverse property name is specified and property domain matches with property range, the forward/direct property should be used for **both** directions and **no inverse/backwards property** needs to be defined.
+- Forward direction properties inherited from `E71 Human-Made Thing` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P102 has title (is title of): E35 Title`
+  - `P103 was intended for (was intention of): E55 Type`
 
-As a result, we did not implement a separate backwards/inverse direction for the following 5 CIDOC Properties:
+&nbsp;
+
+- Forward direction properties inherited from `E72 Legal Object` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P104 is subject to (applies to): E30 Right`
+  - `P105 right held by (has right on): E39 Actor`
+
+&nbsp;
+
+- Forward direction properties inherited from `E90 Symbolic Object` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P106 is composed of (forms part of): E90 Symbolic Object`
+  - `P190 has symbolic content: E62 String`
+
+&nbsp;
+
+d) The following **inherited backwards direction** CIDOC properties, **cannot be used** for instances of classes specified by Policy A as they are interpreted as rdfs:Literal. 
+
+- Backwards direction properties inherited from `E1 CRM Entity` **cannot be used** for instances of classes specified by Policy A.
+  - `P15i influenced (was influenced by): E7 Activity`
+  - `P17i motivated (was motivated by): E7 Activity`
+  - `P41i was classified by (classified): E17 Type Assignment`
+  - `P62i is depicted by (depicts): E24 Physical Human-Made Thing`
+  - `P67i is referred to by (refers to): E89 Propositional Object`
+  - `P70i is documented in (documents): E31 Document`
+  - `P71i is listed in (lists): E32 Authority Document`
+  - `P129i is subject of (is about): E89 Propositional Object`
+  - `P136i supported type creation (was based on): E83 Type Creation`
+  - `P138i has representation (represents): E36 Visual Item`
+  - `P140i was attributed by (assigned attribute to): E13 Attribute Assignment`
+  - `P141i was assigned by (assigned): E13 Attribute Assignment`
+  
+&nbsp;
+
+- Backwards direction properties inherited from `E28 Conceptual Object` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P94i was created by (has created): E65 Creation`
+  
+&nbsp;
+
+- Backwards direction properties inherited from `E41 Appellation` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P1i identifies (is identified by): E1 CRM Entity`
+  - `P76i provides access to (has contact point): E39 Actor`
+  
+&nbsp;
+
+- Backwards direction properties inherited from `E70 Thing` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P16i was used for (used specific object): E7 Activity`
+  - `P130i features are also found on (shows features of): E70 Thing`
+  
+&nbsp;
+
+- Backwards direction properties inherited from `E71 Human-Made Thing` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P19i was made for (was intended use of): E7 Activity`
+  
+&nbsp;
+
+- Backwards direction properties inherited from `E77 Persistent Item` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P12i was present at (occurred in the presence of): E5 Event`
+  - `P92i was brought into existence by (brought into existence): E63 Beginning of Existence`
+  - `P93i was taken out of existence by (took out of existence): E64 End of Existence`
+  
+&nbsp;
+
+- Backwards direction properties inherited from `E90 Symbolic Object` **cannot be used** for instances of classes: (`E61 Time Primitive`, `E94 Space Primitive`, `E95 Spacetime Primitive`)
+  - `P106i forms part of (is composed of): E90 Symbolic Object`
+  - `P128i is carried by (carries): E18 Physical Thing`
+  - `P142i was used in (used constituent): E15 Identifier Assignment`
+  - `P165i is incorporated in (incorporates): E73 Information Object`
+
+&nbsp;
+
+> B3. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property direction should be used for **both** directions and **no backwards/inverse property** needs to be defined.
+
+As a result, we did not implement a separate backwards/inverse direction for the following CIDOC Properties:
 
 - `E53 Place. P121 overlaps with: E53 Place`
 - `E53 Place. P122 borders with: E53 Place`
@@ -139,7 +215,7 @@ As a result, we did not implement a separate backwards/inverse direction for the
 
 &nbsp;
 
-Additionally, all aforementioned redundant backwards/inverse CIDOC Property direction references, were replaced by the respective direct/forward CIDOC Property direction.
+Additionally, all aforementioned redundant backwards/inverse CIDOC Property direction references, are replaced by the respective direct/forward CIDOC Property direction.
 
 - The hierarchical link of  `P10i` subPropertyOf `P132i` was replaced with `P10i` subPropertyOf `P132`.
 
@@ -152,7 +228,7 @@ Since, in the current practice, the property `rdfs:label` is widely used to deno
 - `rdfs:Resource. rdfs:label: rdfs:Literal` subPropertyOf `E1 CRM Entity. P1 is identified by: E41 Appellation`
 
 Note that according to the RDF Schema 1.1 specification, the domain (or range) of a property needs not necessarily be 'subClassOf' or 'equal' to the domain (or range) of its superproperties. With this definition, one can either directly use `rdfs:label` for providing a non-URI identifier/appellation for an instance of `E1 CRM Entity`, or use `P1 is identified by` for associating an additional URI-identifier with an instance of `E1 CRM Entity`, or use `P1 is identified by` and create an intermediate node (i.e. a URI-identifier for instance of `E41_Appellation`) for providing more detailed information about this appellation. A separate guideline will describe how to instantiate these cases if at all needed.
- 
+
 
 &nbsp;
 
@@ -160,7 +236,7 @@ Note that according to the RDF Schema 1.1 specification, the domain (or range) o
 
 The following are property pairs needed to simulate the interval-valued primitive values foreseen by the CRM:
 
-> D1. addition of two new properties, defined as subproperties of `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`, for the 'lower' boundaries specification of `E61 Time Primitive`.
+> D1. addition of two new properties, defined as subproperties of `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`, for the 'maximum known temporal extent' boundaries specification of `E61 Time Primitive`.
 
 As a result, we have created the following property definitions:
 
@@ -169,7 +245,7 @@ As a result, we have created the following property definitions:
 
 &nbsp;
 
-> D2. addition of two new properties, defined as subproperties of `E52 Time-Span. P82 at some time within: E61 Time Primitive`, for the 'upper' boundaries specification of `E61 Time Primitive`.
+> D2. addition of two new properties, defined as subproperties of `E52 Time-Span. P82 at some time within: E61 Time Primitive`, for the 'minimum outer bounds' specification of `E61 Time Primitive`.
 
 Consequently, we have created the following property definitions:
 
