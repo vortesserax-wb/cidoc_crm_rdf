@@ -223,7 +223,7 @@ Additionally, all aforementioned redundant backwards/inverse CIDOC Property dire
 
 #### **C. Labels and appellations**
 
-Since, in the current practice, the property `rdfs:label` is widely used to denote appellations, the following `subPropertyOf` relation was defined according to CRM-SIG Issue 394:
+Since, in the current practice, the property `rdfs:label` is widely used to denote appellations, the following `subPropertyOf` relation was defined according to [CRM-SIG Issue 394](http://cidoc-crm.org/Issue/ID-394-solution-for-dualism-of-e41-appellation-and-rdfslabel):
 
 - `rdfs:Resource. rdfs:label: rdfs:Literal` subPropertyOf `E1 CRM Entity. P1 is identified by: E41 Appellation`
 
