@@ -1,6 +1,6 @@
 # CIDOC-CRM implementation in RDF Schema 1.1 (RDFS)
 
-This project branch will keep track of the draft RDFS implementation of the CIDOC-CRM v7.1.1 
+This repository will keep track of the draft RDFS implementation of the CIDOC-CRM v7.1.1, until it is approved by CIDOC-CRM SIG.
 
 ## Statistics
 
