@@ -94,14 +94,14 @@ As a result, the following properties do not define an inverse direction.
 
 As a result,
 
-a) The following **direct forward direction** CIDOC Properties **cannot** be expressed and are **not defined** in rdfs:
+a) The following **direct forward direction** CIDOC Properties **cannot** be expressed and are **not defined** in RDFS:
 
 - `E95 Spacetime Primitive. P169 defines spacetime volume (spacetime volume is defined by): E92 Spacetime Volume`
 - `E61 Time Primitive. P170 defines time (time is defined by): E52 Time-Span`
 
 &nbsp;
 
-b) The following **direct backwards direction** CIDOC Properties **cannot** be expressed and are **not defined** in rdfs:
+b) The following **direct backwards direction** CIDOC Properties **cannot** be expressed and are **not defined** in RDFS:
 
 - `E94 Space Primitive. P168i defines place (place is defined by): E53 Place`
 
