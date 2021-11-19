@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xml:lang="en" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
+  <!--
+RDFs Implementation (November 2021) of CIDOC-CRM 7.1.1 Supplementary declarations.
+-->
+  <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+    <rdfs:subPropertyOf rdf:resource="http://www.cidoc-crm.org/cidoc-crm/P1_is_identified_by" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P168_place_is_defined_by">
+    <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P169i_spacetime_volume_is_defined_by">
+    <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
+  </rdf:Property>
+  <rdf:Property rdf:about="P170i_time_is_defined_by">
+    <rdfs:subPropertyOf rdf:resource="P1_is_identified_by" />
+  </rdf:Property>
+</rdf:RDF>
