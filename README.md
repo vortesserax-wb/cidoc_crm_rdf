@@ -4,7 +4,7 @@ This repository will keep track of the draft RDFS implementation of the CIDOC-CR
 
 ## Statistics
 
-Release date: 22/11/2021
+Release date: 23/11/2021
 
 Version: 7.1.1 CIDOC Classes: 81 CIDOC Properties: 160
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF xml:lang="en" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
   <!--
 CIDOC CRM v7.1.1 (draft) implemented in RDFS
@@ -11,7 +11,7 @@ http://cidoc-crm.org/Version/version-7.1.1 by an automated algorithm. It is inte
 assumed majority of uses. Depending on the application, users may create adequate extensions 
 compatible with the logical definitions of the CIDOC CRM.
 
-Created by FORTH-ICS Monday November 22, 2021
+Created by FORTH-ICS Tuesday November 23, 2021
 
 
 Encoding Rules:
