@@ -1,10 +1,10 @@
 # CIDOC-CRM implementation in RDF Schema 1.1 (RDFS)
 
-This repository will keep track of the draft RDFS implementation of the CIDOC-CRM v7.1.1, until it is approved by CIDOC-CRM SIG.
+This repository keeps track of the CIDOC-CRM v7.1.1 RDFS implementation. Current implementation has been approved by the 51st CIDOC-CRM SIG (October 2021).
 
 ## Statistics
 
-Release date: 23/11/2021
+Release date: 25/11/2021
 
 Version: 7.1.1 CIDOC Classes: 81 CIDOC Properties: 160
 
