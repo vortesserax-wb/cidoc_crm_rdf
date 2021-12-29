@@ -12,7 +12,7 @@ assumed majority of uses. Depending on the application, users may create adequat
 compatible with the logical definitions of the CIDOC CRM.
 
 Created by FORTH-ICS Thursday November 25, 2021
-
+CC BY 4.0 https://creativecommons.org/licenses/by/4.0/legalcode
 
 Encoding Rules:
 1. The RDF spelling rules do not allow blanks. Hence we have replaced them by underscores.
