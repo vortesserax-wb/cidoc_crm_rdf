@@ -33,17 +33,17 @@ Policies followed for the RDFS implementation of CIDOC v.7.1.1 were created w.r.
 
 #### **A. CIDOC Classes implementation in RDFS**
 
-The CIDOC-CRM model defines classes, that in Triple Stores are typically implemented as primitive values. These classes are all subclasses of `E59 Primitive` and in RDFS they are interpreted as Literal. There are some classes in the CIDOC-CRM model that are both subclasses of `E59 Primitive` and E41 Appellation. So far we have followed the decision by CRM-SIG in "Issue 394: Solution for Dualism of E41 Appellation and rdfs:label" in 28-11-2018 wrt the question whether these classes should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.
+The CIDOC-CRM model defines classes, that in Triple Stores are typically implemented as primitive values. These classes are all subclasses of `E59 Primitive Value` and in RDFS they are interpreted as Literal. There are some classes in the CIDOC-CRM model that are both subclasses of `E59 Primitive Value` and E41 Appellation. So far we have followed the decision by CRM-SIG in "Issue 394: Solution for Dualism of E41 Appellation and rdfs:label" in 28-11-2018 wrt the question whether these classes should be implemented as rdfs:Class or still be interpreted as rdfs:Literal.
 
 In this version we have followed the following policy regarding CIDOC Classes implementation in RDFS:
 
 &nbsp;
 
-> A1. CIDOC Classes that are subClasses of `E59 Primitive` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class.
+> A1. CIDOC Classes that are subClasses of `E59 Primitive Value` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class.
 
 As a result, the following CIDOC classes were not defined in RDFS:
 
-- `E59 Primitive`
+- `E59 Primitive Value`
 - `E60 Number`
 - `E61 Time Primitive`
 - `E62 String`
@@ -52,12 +52,15 @@ As a result, the following CIDOC classes were not defined in RDFS:
 
 Additionally, the following isA relationships were not defined in RDFS:
 
-- `E59 Primitive` subClassOf `E1 CRM Entity`
-- `E60 Number` subClassOf `E59 Primitive`
-- `E61 Time Primitive` subClassOf `E59 Primitive`, `E41 Appellation`
-- `E62 String` subClassOf `E59 Primitive`
-- `E94 Space Primitive` subClassOf `E59 Primitive`, `E41 Appellation`
-- `E95 Spacetime Primitive` subClassOf `E59 Primitive`, `E41 Appellation`
+- `E59 Primitive Value` `subClassOf` `E1 CRM Entity`
+- `E60 Number` `subClassOf` `E59 Primitive Value`
+- `E61 Time Primitive` `subClassOf` `E41 Appellation`
+- `E61 Time Primitive` `subClassOf` `E59 Primitive Value`
+- `E62 String` `subClassOf` `E59 Primitive Value`
+- `E94 Space Primitive` `subClassOf` `E41 Appellation`
+- `E94 Space Primitive` `subClassOf` `E59 Primitive Value`
+- `E95 Spacetime Primitive` `subClassOf` `E41 Appellation`
+- `E95 Spacetime Primitive` `subClassOf` `E59 Primitive Value`
 
 &nbsp;
 
@@ -129,9 +132,9 @@ Additionally, all aforementioned redundant backwards/inverse CIDOC Property dire
 
 CIDOC-CRM version 7.1.1 defines the below subpropertyOf relations:
 
-- `P168 place is defined by` **subPropertyOf** `P1 is identified by`
-- `P169i spacetime volume is defined by` **subPropertyOf** `P1 is identified by`
-- `P170i time is defined by` **subPropertyOf** `P1 is identified by`
+- `P168 place is defined by` `subPropertyOf` `P1 is identified by`
+- `P169i spacetime volume is defined by` `subPropertyOf` `P1 is identified by`
+- `P170i time is defined by` `subPropertyOf` `P1 is identified by`
 
 The range of P168, 169i and P170i is `E94 Space Primitive`, `E95 Spacetime Primitive` and `E61 Time Primitive` respectively, which are all subclasses of `E41 Appellation` and interpreted as `rdfs:Literal` in RDFS, i.e. these three properties are datatype properties. However, the P1 property has range E41 Appellation, i.e. this property is an object property. Since OWL 2 distinguishes between [object subproperties](https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Object_Subproperties), [data subproperties](https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Data_Subproperties) and [annotation subproperties](https://www.w3.org/TR/2012/REC-owl2-syntax-20121211/#Annotation_Subproperties), and also in OWL-DL the subject and object of a subproperty statement must be either both datatype properties or both object properties (see [here](https://www.w3.org/TR/owl-ref/#subPropertyOf-def)), we do not include these three subPropertyOf relations in the provided RDFS implementation to avoid inconsistencies when reasoning with OWL 2 and OWL DL. Instead, we provide them in a separate ‘supplementary’ RDFS file which one can use if such inconsistencies are not expected.
 
