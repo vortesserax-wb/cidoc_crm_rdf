@@ -2000,13 +2000,11 @@ This property is part of the fully developed path from E4 Period through P161 ha
                                                                      rdfs:domain <http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume>;
                                                                      rdfs:label "has spatial projection"@en;
                                                                      rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E53_Place>;
-                                                                     rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at>;
                                                                      owl:inverseOf <http://www.cidoc-crm.org/cidoc-crm/P161i_is_spatial_projection_of>.
     <http://www.cidoc-crm.org/cidoc-crm/P161i_is_spatial_projection_of> a rdf:Property;
                                                                         rdfs:domain <http://www.cidoc-crm.org/cidoc-crm/E53_Place>;
                                                                         rdfs:label "is spatial projection of"@en;
                                                                         rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E92_Spacetime_Volume>;
-                                                                        rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P7i_witnessed>;
                                                                         owl:inverseOf <http://www.cidoc-crm.org/cidoc-crm/P161_has_spatial_projection>.
     <http://www.cidoc-crm.org/cidoc-crm/P164_is_temporally_specified_by> a rdf:Property;
                                                                          rdfs:comment """This property relates an instance of E93 Presence with the instance of E52 Time-Span that defines the time-slice of the spacetime volume that this instance of E93 Presence is related to via the property P166 was a presence of (had presence).
@@ -3871,6 +3869,7 @@ This property is a shortcut of the more fully developed path from E4 Period thro
                                                                      "совершался на"@ru,
                                                                      "发生地在"@zh;
                                                           rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E53_Place>;
+                                                          rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P161_has_spatial_projection>;
                                                           owl:inverseOf <http://www.cidoc-crm.org/cidoc-crm/P7i_witnessed>.
     <http://www.cidoc-crm.org/cidoc-crm/P7i_witnessed> a rdf:Property;
                                                        rdfs:domain <http://www.cidoc-crm.org/cidoc-crm/E53_Place>;
@@ -3882,6 +3881,7 @@ This property is a shortcut of the more fully developed path from E4 Period thro
                                                                   "был местом совершения"@ru,
                                                                   "发生过"@zh;
                                                        rdfs:range <http://www.cidoc-crm.org/cidoc-crm/E4_Period>;
+                                                       rdfs:subPropertyOf <http://www.cidoc-crm.org/cidoc-crm/P161i_is_spatial_projection_of>;
                                                        owl:inverseOf <http://www.cidoc-crm.org/cidoc-crm/P7_took_place_at>.
     <http://www.cidoc-crm.org/cidoc-crm/P80_end_is_qualified_by> a rdf:Property;
                                                                  rdfs:comment "This property associates an instance of E52 Time-Span with a note detailing the scholarly or scientific opinions and justifications about the end of this time-span concerning certainty, precision, sources etc. This property may also be used to describe arguments constraining possible dates and to distinguish reasons for alternative dates.";

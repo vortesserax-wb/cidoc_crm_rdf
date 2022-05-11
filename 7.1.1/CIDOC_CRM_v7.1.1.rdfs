@@ -14,6 +14,13 @@ compatible with the logical definitions of the CIDOC CRM.
 Created by FORTH-ICS Thursday November 25, 2021
 CC BY 4.0 https://creativecommons.org/licenses/by/4.0/legalcode
 
+Updated on: Wednesday May 11, 2022
+==========================
+- Detected and corrected the direction of the subPropertyOf relationship between properties P161 and P67, as it has been specified in the 53rd SIG meeting that it is just a typographical error.
+- Corrected typographical errors in comments.
+- Improved scope notes parsing procedure.
+- Corrected Class names in comment about the RDFs generation policies.
+
 Encoding Rules:
 1. The RDF spelling rules do not allow blanks. Hence we have replaced them by underscores.
    For instance "E63_Beginning_of_Existence" or "P2i_is_type_of".
@@ -1277,6 +1284,7 @@ The related instance of E53 Place should be seen as a wider approximation of the
 This property is a shortcut of the more fully developed path from E4 Period through P161 has spatial projection, E53 Place, P89 falls within to E53 Place. E4 Period is a subclass of E92 Spacetime Volume. By the definition of P161 has spatial projection an instance of E4 Period takes place on all its spatial projections, that is, instances of E53 Place. Something happening at a given place can also be considered to happen at a larger place containing the first. For example, the assault on the Bastille July 14th 1789 took place in the area covered by Paris in 1789 but also in the area covered by France in 1789.</rdfs:comment>
     <rdfs:domain rdf:resource="E4_Period" />
     <rdfs:range rdf:resource="E53_Place" />
+    <rdfs:subPropertyOf rdf:resource="P161_has_spatial_projection" />
     <owl:inverseOf rdf:resource="P7i_witnessed" />
   </rdf:Property>
   <rdf:Property rdf:about="P7i_witnessed">
@@ -1289,6 +1297,7 @@ This property is a shortcut of the more fully developed path from E4 Period thro
     <rdfs:label xml:lang="zh">发生过</rdfs:label>
     <rdfs:domain rdf:resource="E53_Place" />
     <rdfs:range rdf:resource="E4_Period" />
+    <rdfs:subPropertyOf rdf:resource="P161i_is_spatial_projection_of" />
     <owl:inverseOf rdf:resource="P7_took_place_at" />
   </rdf:Property>
   <rdf:Property rdf:about="P8_took_place_on_or_within">
@@ -4450,14 +4459,12 @@ This property is part of the fully developed path from E18 Physical Thing throug
 This property is part of the fully developed path from E4 Period through P161 has spatial projection, E53 Place, P89 falls within (contains) to E53 Place, which in turn is shortcut by P7 took place at (witnessed).</rdfs:comment>
     <rdfs:domain rdf:resource="E92_Spacetime_Volume" />
     <rdfs:range rdf:resource="E53_Place" />
-    <rdfs:subPropertyOf rdf:resource="P7_took_place_at" />
     <owl:inverseOf rdf:resource="P161i_is_spatial_projection_of" />
   </rdf:Property>
   <rdf:Property rdf:about="P161i_is_spatial_projection_of">
     <rdfs:label xml:lang="en">is spatial projection of</rdfs:label>
     <rdfs:domain rdf:resource="E53_Place" />
     <rdfs:range rdf:resource="E92_Spacetime_Volume" />
-    <rdfs:subPropertyOf rdf:resource="P7i_witnessed" />
     <owl:inverseOf rdf:resource="P161_has_spatial_projection" />
   </rdf:Property>
   <rdf:Property rdf:about="P164_is_temporally_specified_by">

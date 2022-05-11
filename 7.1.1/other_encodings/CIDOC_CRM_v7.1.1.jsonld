@@ -3003,8 +3003,29 @@
       "rdfs:range": {
         "id": "crm:E53_Place"
       },
+      "rdfs:subPropertyOf": {
+        "id": "crm:P161_has_spatial_projection"
+      },
       "owl:inverseOf": {
         "id": "crm:P7i_witnessed"
+      }
+    },
+    {
+      "id": "crm:P161_has_spatial_projection",
+      "type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "has spatial projection"
+      },
+      "rdfs:comment": "This property associates an instance of an instance of E92 Spacetime Volume with an instance of E53 Place that is the result of the spatial projection of the instance of the E92 Spacetime Volume on a reference space.\nIn general, there can be more than one useful reference space (for reference space see P156 occupies and P157 is at rest relative to) to describe the spatial projection of a spacetime volume, for example, in describing a sea battle, the difference between the battle ship and the seafloor as reference spaces. Thus, it can be seen that the projection is not unique.\nThe spatial projection is the actual spatial coverage of a spacetime volume, which normally has fuzzy boundaries except for instances of E92 Spacetime Volumes which are geometrically defined in the same reference system as the range of this property are an exception to this and do not have fuzzy boundaries. Modelling explicitly fuzzy spatial projections serves therefore as a common topological reference of different spatial approximations rather than absolute geometric determination, for instance for relating outer or inner spatial boundaries for the respective spacetime volumes.\nIn case the domain of an instance of P161 has spatial projection is an instance of E4 Period, the spatial projection describes all areas that period was ever present at, for instance, the Roman Empire.\nThis property is part of the fully developed path from E18 Physical Thing through P196 defines, E92 Spacetime Volume, P161 has spatial projection to E53 Place, which in turn is implied by P156 occupies (is occupied by).\nThis property is part of the fully developed path from E4 Period through P161 has spatial projection, E53 Place, P89 falls within (contains) to E53 Place, which in turn is shortcut by P7 took place at (witnessed).",
+      "rdfs:domain": {
+        "id": "crm:E92_Spacetime_Volume"
+      },
+      "rdfs:range": {
+        "id": "crm:E53_Place"
+      },
+      "owl:inverseOf": {
+        "id": "crm:P161i_is_spatial_projection_of"
       }
     },
     {
@@ -3046,8 +3067,28 @@
       "rdfs:range": {
         "id": "crm:E4_Period"
       },
+      "rdfs:subPropertyOf": {
+        "id": "crm:P161i_is_spatial_projection_of"
+      },
       "owl:inverseOf": {
         "id": "crm:P7_took_place_at"
+      }
+    },
+    {
+      "id": "crm:P161i_is_spatial_projection_of",
+      "type": "rdf:Property",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "is spatial projection of"
+      },
+      "rdfs:domain": {
+        "id": "crm:E53_Place"
+      },
+      "rdfs:range": {
+        "id": "crm:E92_Spacetime_Volume"
+      },
+      "owl:inverseOf": {
+        "id": "crm:P161_has_spatial_projection"
       }
     },
     {
@@ -13316,47 +13357,6 @@
       },
       "owl:inverseOf": {
         "id": "crm:P160_has_temporal_projection"
-      }
-    },
-    {
-      "id": "crm:P161_has_spatial_projection",
-      "type": "rdf:Property",
-      "rdfs:label": {
-        "@language": "en",
-        "@value": "has spatial projection"
-      },
-      "rdfs:comment": "This property associates an instance of an instance of E92 Spacetime Volume with an instance of E53 Place that is the result of the spatial projection of the instance of the E92 Spacetime Volume on a reference space.\nIn general, there can be more than one useful reference space (for reference space see P156 occupies and P157 is at rest relative to) to describe the spatial projection of a spacetime volume, for example, in describing a sea battle, the difference between the battle ship and the seafloor as reference spaces. Thus, it can be seen that the projection is not unique.\nThe spatial projection is the actual spatial coverage of a spacetime volume, which normally has fuzzy boundaries except for instances of E92 Spacetime Volumes which are geometrically defined in the same reference system as the range of this property are an exception to this and do not have fuzzy boundaries. Modelling explicitly fuzzy spatial projections serves therefore as a common topological reference of different spatial approximations rather than absolute geometric determination, for instance for relating outer or inner spatial boundaries for the respective spacetime volumes.\nIn case the domain of an instance of P161 has spatial projection is an instance of E4 Period, the spatial projection describes all areas that period was ever present at, for instance, the Roman Empire.\nThis property is part of the fully developed path from E18 Physical Thing through P196 defines, E92 Spacetime Volume, P161 has spatial projection to E53 Place, which in turn is implied by P156 occupies (is occupied by).\nThis property is part of the fully developed path from E4 Period through P161 has spatial projection, E53 Place, P89 falls within (contains) to E53 Place, which in turn is shortcut by P7 took place at (witnessed).",
-      "rdfs:domain": {
-        "id": "crm:E92_Spacetime_Volume"
-      },
-      "rdfs:range": {
-        "id": "crm:E53_Place"
-      },
-      "rdfs:subPropertyOf": {
-        "id": "crm:P7_took_place_at"
-      },
-      "owl:inverseOf": {
-        "id": "crm:P161i_is_spatial_projection_of"
-      }
-    },
-    {
-      "id": "crm:P161i_is_spatial_projection_of",
-      "type": "rdf:Property",
-      "rdfs:label": {
-        "@language": "en",
-        "@value": "is spatial projection of"
-      },
-      "rdfs:domain": {
-        "id": "crm:E53_Place"
-      },
-      "rdfs:range": {
-        "id": "crm:E92_Spacetime_Volume"
-      },
-      "rdfs:subPropertyOf": {
-        "id": "crm:P7i_witnessed"
-      },
-      "owl:inverseOf": {
-        "id": "crm:P161_has_spatial_projection"
       }
     },
     {
