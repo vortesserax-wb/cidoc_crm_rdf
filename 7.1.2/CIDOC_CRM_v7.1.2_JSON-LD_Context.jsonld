@@ -1104,6 +1104,10 @@
       "@id": "crm:P139_has_alternative_form",
       "@type": "@id"
     },
+    "P139i_is_alternative_form_of": {
+      "@id": "crm:P139i_is_alternative_form_of",
+      "@type": "@id"
+    },
     "P140_assigned_attribute_to": {
       "@id": "crm:P140_assigned_attribute_to",
       "@type": "@id"
