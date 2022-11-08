@@ -187,7 +187,7 @@ specific to or characteristic for a language group and being described indirectl
 
 As a result, we have created the following class definition:
 
-- `E41_E33_Linguistic_Appellation` subClass of `E41_Appellation` and `E33_Linguistic_Object`
+- `E33_E41_Linguistic_Appellation` subClass of `E33_Linguistic_Object` and `E41_Appellation`
 
 &nbsp;
 
