@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <rdf:RDF xml:lang="en" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xml:base="http://www.cidoc-crm.org/cidoc-crm/">
-  <!--
-CIDOC CRM v7.1.2 implemented in RDFS
+  <rdf:Description rdf:about="http://www.cidoc-crm.org/cidoc-crm/">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
+    <owl:versionInfo>RDFs Implementation (September 2022) of CIDOC-CRM 7.1.2</owl:versionInfo>
+    <rdfs:comment xml:lang="en">CIDOC CRM v7.1.2 implemented in RDFS
 
 This is the implementation incorporating to the decisions of the 53rd CRM-SIG meeting (May 2022)
 and has been approved for official use.
@@ -31,13 +33,13 @@ Encoding Rules:
 4. RDF does not support properties of properties, therefore, users may create their own
    subProperties for CRM properties that have a type property such as "P3 has note":
    Instead of P3 has note (P3-1 has type : parts description) declare
-   <rdf:Property rdf:about="P3_parts_description">
-      <rdfs:domain rdf:resource="E1_CRM_Entity"/>
-      <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-      <rdfs:subPropertyOf rdf:resource="P3_has_note"/>
-   </rdf:Property>
+   &lt;rdf:Property rdf:about="P3_parts_description"&gt;
+      &lt;rdfs:domain rdf:resource="E1_CRM_Entity"/&gt;
+      &lt;rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/&gt;
+      &lt;rdfs:subPropertyOf rdf:resource="P3_has_note"/&gt;
+   &lt;/rdf:Property&gt;
 
-5. Scope notes are represented as <rdfs:comment> elements.
+5. Scope notes are represented as &lt;rdfs:comment&gt; elements.
 
 6. In addition this encoding contains labels in languages different from English, 
    which are taken from translations of previous versions of the CIDOC CRM.    
@@ -52,9 +54,6 @@ Encoding Rules:
    Property P81 is dedicated for modeling the Time-Span's maximum known temporal extent i.e. ongoing_throughout. 
    Property P82 is for modeling the minimum outer bounds of events i.e. at_some_time_within. 
    P81 has its time interval redefined by P81a and P81b. Similarly, we redefine P82 by P82a and P82b.
-
--->
-  <!--
 ## RDFS Generation Policies
 
 ### Sources
@@ -76,7 +75,7 @@ The CIDOC-CRM model defines classes, that in Triple Stores are typically impleme
 
 In this version we have followed the following policy regarding CIDOC Classes implementation in RDFS:
 
-> A1. CIDOC Classes that are subClasses of `E59 Primitive Value` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class.
+&gt; A1. CIDOC Classes that are subClasses of `E59 Primitive Value` are interpreted as rdfs:Literal regardless of whether they are also subClasses of another Class.
 
 As a result, the following CIDOC classes were not defined in RDFS:
 
@@ -109,7 +108,7 @@ Another aspect considered for the implementation of properties in RDFS is whethe
 
 In this version we followed the following policies regarding CIDOC Properties implementation in RDFS:
 
-> B1. CIDOC Property backwards/inverse direction is **not** defined, whenever no inverse name for the property has been specified in parentheses in the official CIDOC documentation and property domain is not equal with property range.
+&gt; B1. CIDOC Property backwards/inverse direction is **not** defined, whenever no inverse name for the property has been specified in parentheses in the official CIDOC documentation and property domain is not equal with property range.
 
 As a result, the following properties do not define an inverse direction.
 
@@ -124,7 +123,7 @@ As a result, the following properties do not define an inverse direction.
 - `E53 Place. P172 contains: E94 Space Primitive`
 - `E90 Symbolic Object. P190 has symbolic content: E62 String`
 
-> B2. CIDOC Property forward direction is **not** defined whenever property domain is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property backwards/inverse direction is **not** defined, whenever property range is interpreted as rdfs:Literal (A.1). Further, the instances of classes interpreted as rdfs:Literal, cannot express in RDFs their **inherited** properties that could be expressed according to CIDOC Model.
+&gt; B2. CIDOC Property forward direction is **not** defined whenever property domain is interpreted as rdfs:Literal (A.1). Similarly, CIDOC Property backwards/inverse direction is **not** defined, whenever property range is interpreted as rdfs:Literal (A.1). Further, the instances of classes interpreted as rdfs:Literal, cannot express in RDFs their **inherited** properties that could be expressed according to CIDOC Model.
 
 As a result,
 
@@ -137,7 +136,7 @@ b) The following **direct backwards direction** CIDOC Properties **cannot** be e
 
 - `E94 Space Primitive. P168i defines place (place is defined by): E53 Place`
 
-> B3. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property direction should be used for **both** directions and **no backwards/inverse property** needs to be defined.
+&gt; B3. Whenever no backwards/inverse property name is specified and property domain matches with property range, then the forward/direct property direction should be used for **both** directions and **no backwards/inverse property** needs to be defined.
 
 As a result, we did not implement a separate backwards/inverse direction for the following CIDOC Properties:
 
@@ -170,21 +169,21 @@ Note that according to the RDF Schema 1.1 specification, the domain (or range) o
 
 The following are property pairs needed to simulate the interval-valued primitive values foreseen by the CRM:
 
-> D1. addition of two new properties, defined as subproperties of `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`, for the 'maximum known temporal extent' boundaries specification of `E61 Time Primitive`.
+&gt; D1. addition of two new properties, defined as subproperties of `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`, for the 'maximum known temporal extent' boundaries specification of `E61 Time Primitive`.
 
 As a result, we have created the following property definitions:
 
 - `E52 Time-Span. P81a end of the begin: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
 - `E52 Time-Span. P81b begin of the end: rdfs:Literal` (subPropertyOf `E52 Time-Span. P81 ongoing throughout: E61 Time Primitive`)
 
-> D2. addition of two new properties, defined as subproperties of `E52 Time-Span. P82 at some time within: E61 Time Primitive`, for the 'minimum outer bounds' specification of `E61 Time Primitive`.
+&gt; D2. addition of two new properties, defined as subproperties of `E52 Time-Span. P82 at some time within: E61 Time Primitive`, for the 'minimum outer bounds' specification of `E61 Time Primitive`.
 
 Consequently, we have created the following property definitions:
 
 - `E52 Time-Span. P82a begin of the begin: rdfs:Literal` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)
 - `E52 Time-Span. P82b end of the end: rdfs:Literal` (subPropertyOf `E52 Time-Span. P82 at some time within: E61 Time Primitive`)
 
-> D3. addition of two new properties, defined as subproperties of `E54 Dimension. P90 has value: E60 Number`, for the upper and lower boundaries specification of `E60 Number`.
+&gt; D3. addition of two new properties, defined as subproperties of `E54 Dimension. P90 has value: E60 Number`, for the upper and lower boundaries specification of `E60 Number`.
 
 Consequently, we have created the following property definitions:
 
@@ -195,7 +194,7 @@ Consequently, we have created the following property definitions:
 
 The following are declarations of frequently used multiple instantiations as classes with respective multiple IsA (so far only one):
 
-> E1. addition of a new class, defined as subClassOf `E41 Appellation` and `E33 Linguistic Object`, for all Appellations being regarded
+&gt; E1. addition of a new class, defined as subClassOf `E41 Appellation` and `E33 Linguistic Object`, for all Appellations being regarded
 specific to or characteristic for a language group and being described indirectly via a URI.
 
 As a result, we have created the following class definition:
@@ -204,7 +203,7 @@ As a result, we have created the following class definition:
 
 #### **F. Translations and Scope notes**
 
-> F1. **Translations** Each RDFS Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
+&gt; F1. **Translations** Each RDFS Class or Property definition is accompanied by a set of translations expressed as rdfs:labels separated by xml:lang tags. The translation label used for each language is **the most recent** still **valid** translation. Still valid translation may be interpreted in the following ways:
 
 - The English label of the `CurrentVersion` that the current RDFS file is referring to is *almost equal* (accepting only differences regarding multiple spaces) to the English label of the `TranslationVersion` that the translated label was created for. For example, in order to accept a translation for `E22 Human-Made Object` in the CurrentVersion (7.1.2) we should have a translation for E22 that was created based on a CIDOC version that used the same name for E22. The class name of E22 was changed from `E22 Man-Made Object` to `E22 Human-Made Object` in version 6.2.7. So the only **valid** translations would be these that were created based on version 6.2.7 or later. Currently no such translation has been created, so `E22 Human-Made Object` in CurrentVersion (7.1.2) does not define any translation in the RDFS file.
 
@@ -212,7 +211,7 @@ As a result, we have created the following class definition:
 
 Currently in this version we follow the option to qualify translations as valid based on the comparison of the respective labels in the corresponding CIDOC versions.
 
-> F2. **Scope notes** are defined as rdfs:comment and include only the text of the official CIDOC-CRM version in English language. Since scope notes are not just simple texts but include formatting data, a simple removal of the formatting data does not always produce a readable format. Therefore we followed the below simple conventions for the transformation of CIDOC-CRM scope note text into a readable rdfs:comment:
+&gt; F2. **Scope notes** are defined as rdfs:comment and include only the text of the official CIDOC-CRM version in English language. Since scope notes are not just simple texts but include formatting data, a simple removal of the formatting data does not always produce a readable format. Therefore we followed the below simple conventions for the transformation of CIDOC-CRM scope note text into a readable rdfs:comment:
 
 - Each Paragraph defines a new line
 - Each element in an unordered list defines a new line
@@ -220,15 +219,15 @@ Currently in this version we follow the option to qualify translations as valid 
 - Each superscript text is separated from its base with `'-'`
 - Each subscript text is separated from its base with `'_'` (none found)
 
-> F3. **Scope notes of Inverse Properties**. Scope notes for the inverse/backwards direction of properties are not defined as they are covered by the definition of the direct/forward direction definition. Whenever the direct/forward property direction of a property `Pxxx` is not defined due to policy **B1**, then its scope note is used as scope note for the inverse/backwards property `Pxxxi`, and labeled as `Scope note for 'Pxxx':`.
+&gt; F3. **Scope notes of Inverse Properties**. Scope notes for the inverse/backwards direction of properties are not defined as they are covered by the definition of the direct/forward direction definition. Whenever the direct/forward property direction of a property `Pxxx` is not defined due to policy **B1**, then its scope note is used as scope note for the inverse/backwards property `Pxxxi`, and labeled as `Scope note for 'Pxxx':`.
 
 As a result, the direct/forward property definition was used for the rdfs:comment definition of
 
 - `E92 Spacetime Volume. P169i spacetime volume is defined by: rdfs:Literal`
 - `E52 Time-Span. P170i time is defined by: rdfs:Literal`
--->
-  <rdf:Description rdf:about="http://www.cidoc-crm.org/cidoc-crm/">
-    <owl:versionInfo>RDFs Implementation (September 2022) of CIDOC-CRM 7.1.2</owl:versionInfo>
+
+
+</rdfs:comment>
   </rdf:Description>
   <rdfs:Class rdf:about="E1_CRM_Entity">
     <rdfs:label xml:lang="en">CRM Entity</rdfs:label>
