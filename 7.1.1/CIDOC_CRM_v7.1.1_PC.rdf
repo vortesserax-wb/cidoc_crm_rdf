@@ -58,6 +58,15 @@ Below is an indicative set of RDF triples:
            a   crm:E55_Type ;
            rdfs:label "Master Craftsman" .
 
+*** Implementation Recommendation***
+
+
+The instantiation of a property class in a knowledge base implies that the original property (represented by the property class) is also instantiated in the knowledge base. I.e. (for the case of PC14_carried_out_by): 
+
+PC14(x) ∧ P01(x, a) ∧ P02(x,b) ∧ P14.1(x,c) ⇒ P14(a,b)
+
+Therefore, do not instantiate the property class without instantiating the property itself. This may be achieved manually or by an automated procedure.
+
 
 -->
   <!--
